@@ -1,0 +1,3637 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>[hidden]{display:none!important} img{max-width:100%}</style>
+<title>Guitar and Ukulele Chord Strip</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%2032%2032%27%3E%3Crect%20width%3D%2732%27%20height%3D%2732%27%20rx%3D%277%27%20fill%3D%27%238A5C15%27%2F%3E%3Cg%20stroke%3D%27%23fff%27%20stroke-linecap%3D%27round%27%3E%3Cpath%20d%3D%27M7.5%209.6h17%27%20stroke-width%3D%273%27%2F%3E%3Cg%20stroke-width%3D%271.25%27%20opacity%3D%27.85%27%3E%3Cpath%20d%3D%27M7.5%2015h17M7.5%2020.4h17M7.5%2025.8h17%27%2F%3E%3Cpath%20d%3D%27M7.5%209.6v16.2M13.2%209.6v16.2M18.8%209.6v16.2M24.5%209.6v16.2%27%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3Ccircle%20cx%3D%2713.2%27%20cy%3D%2717.7%27%20r%3D%272.6%27%20fill%3D%27%23fff%27%2F%3E%3Ccircle%20cx%3D%2724.5%27%20cy%3D%2723.1%27%20r%3D%272.6%27%20fill%3D%27%23fff%27%2F%3E%3C%2Fsvg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap">
+<style>
+  :root{
+    --bg:#EDF0EE;
+    --surface:#FFFFFF;
+    --surface-2:#F5F7F5;
+    --ink:#151D19;
+    --muted:#5D6B64;
+    --faint:#84948C;
+    --line:#D2D9D4;
+    --line-soft:#E2E7E3;
+    --accent:#8A5C15;
+    --accent-bg:rgba(138,92,21,.10);
+    --accent-ink:#FFFFFF;
+    --danger:#8F2F1F;
+    --shadow:0 1px 2px rgba(20,32,26,.05), 0 8px 24px -12px rgba(20,32,26,.18);
+    --radius:10px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#101613;
+      --surface:#18201C;
+      --surface-2:#1E2723;
+      --ink:#E3EAE5;
+      --muted:#9AA9A1;
+      --faint:#72827A;
+      --line:#2A3531;
+      --line-soft:#232D29;
+      --accent:#D7A24A;
+      --accent-bg:rgba(215,162,74,.14);
+      --accent-ink:#171208;
+      --danger:#E0876F;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px -14px rgba(0,0,0,.7);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#101613;
+    --surface:#18201C;
+    --surface-2:#1E2723;
+    --ink:#E3EAE5;
+    --muted:#9AA9A1;
+    --faint:#72827A;
+    --line:#2A3531;
+    --line-soft:#232D29;
+    --accent:#D7A24A;
+    --accent-bg:rgba(215,162,74,.14);
+    --accent-ink:#171208;
+    --danger:#E0876F;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px -14px rgba(0,0,0,.7);
+  }
+
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:"Archivo",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    font-size:15px; line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1160px; margin:0 auto; padding-inline:16px; padding-block:28px 56px;}
+
+  header.top{
+    display:flex; flex-wrap:wrap; align-items:flex-end; gap:8px 18px;
+    padding-bottom:16px; margin-bottom:22px;
+    border-bottom:1px solid var(--line);
+  }
+  h1{
+    margin:0; font-size:27px; font-weight:700; letter-spacing:-.02em;
+    text-wrap:balance;
+  }
+  .tagline{margin:0; color:var(--muted); font-size:14px; max-width:46ch;}
+  .tools{margin-left:auto; display:flex; align-items:center; gap:12px; flex-wrap:wrap;}
+  .seg{display:inline-flex; border:1px solid var(--line); border-radius:8px; overflow:hidden; background:var(--surface);}
+  .segbtn{
+    all:unset; cursor:pointer; padding:6px 13px; font-size:13px; font-weight:500;
+    color:var(--muted); line-height:1.4;
+  }
+  .segbtn:hover{color:var(--accent);}
+  .segbtn.is-on{background:var(--accent); color:var(--accent-ink); font-weight:600;}
+  .segbtn:focus-visible{outline:2px solid var(--accent); outline-offset:-2px;}
+  .themebtn{
+    all:unset; cursor:pointer; width:34px; height:34px; border-radius:50%;
+    display:grid; place-items:center; color:var(--muted);
+    border:1px solid var(--line); background:var(--surface);
+  }
+  .themebtn:hover{color:var(--accent); border-color:var(--accent);}
+  .themebtn:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
+  .themebtn svg{width:17px; height:17px;}
+  .pager{display:flex; align-items:center; gap:6px;}
+  .pager .btn{padding:5px 8px; line-height:0;}
+  .pager .btn svg{width:15px; height:15px;}
+  .pager .lbl{
+    font-family:"DM Mono",ui-monospace,Menlo,monospace; font-size:12.5px; color:var(--ink);
+    min-width:52px; text-align:center; font-variant-numeric:tabular-nums;
+  }
+  .tuning{
+    font-family:"DM Mono",ui-monospace,Menlo,monospace;
+    font-size:12px; color:var(--faint); letter-spacing:.04em; white-space:nowrap;
+    padding-bottom:2px;
+  }
+
+  .tabs{
+    display:flex; gap:3px; flex-wrap:wrap; margin-bottom:20px;
+    border-bottom:1px solid var(--line);
+  }
+  .tab{
+    all:unset; cursor:pointer; display:inline-flex; align-items:center; gap:7px;
+    padding:9px 15px; font-size:14px; font-weight:500; color:var(--muted);
+    border:1px solid transparent; border-bottom:none; border-radius:9px 9px 0 0;
+    margin-bottom:-1px;
+  }
+  .tab:hover{color:var(--accent);}
+  .tab.is-on{background:var(--surface); border-color:var(--line); color:var(--ink); font-weight:600;}
+  .tab:focus-visible{outline:2px solid var(--accent); outline-offset:-3px;}
+  .pill{
+    font-family:"DM Mono",ui-monospace,Menlo,monospace; font-size:11px; line-height:1.6;
+    background:var(--accent-bg); color:var(--accent); border-radius:999px; padding:0 7px;
+  }
+  .pane{display:none;}
+  .pane.is-on{display:block;}
+
+  .subtabs{
+    display:inline-flex; gap:3px; padding:3px; margin-bottom:14px;
+    background:var(--surface-2); border:1px solid var(--line); border-radius:9px;
+  }
+  .subtab{
+    all:unset; box-sizing:border-box; cursor:pointer;
+    padding:6px 14px; font-size:13px; font-weight:500;
+    color:var(--ink); background:var(--surface);
+    border:1px solid var(--line); border-radius:7px;
+  }
+  .subtab:hover:not([disabled]){color:var(--accent); border-color:var(--accent);}
+  .subtab.is-on{
+    background:var(--accent); color:var(--accent-ink);
+    border-color:var(--accent); font-weight:600;
+  }
+  /* genuinely unavailable: no button at all, so the pickable one can't be mistaken for it */
+  .subtab[disabled]{
+    background:transparent; border-color:transparent;
+    color:var(--faint); opacity:.55; cursor:not-allowed;
+  }
+  .subtab:focus-visible{outline:2px solid var(--accent); outline-offset:-2px;}
+  .subnote{font-size:12.5px; color:var(--faint); margin:-6px 0 14px;}
+  .subnote b{color:var(--ink); font-weight:600;}
+  .subpane{display:none;}
+  .subpane.is-on{display:block;}
+  .emptyhint{color:var(--faint); font-size:13.5px; margin:0; padding:20px 2px;}
+
+  footer.legend{margin-top:22px;}
+
+  .panel{
+    background:var(--surface); border:1px solid var(--line);
+    border-radius:var(--radius); padding:16px;
+  }
+
+  .eyebrow{
+    font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:.1em;
+    color:var(--muted); margin:0 0 8px;
+  }
+  .eyebrow .count{color:var(--faint); font-weight:500; letter-spacing:.04em; text-transform:none;}
+
+  textarea#reflowText{
+    width:100%; min-height:210px; resize:vertical;
+    font-family:"DM Mono",ui-monospace,Menlo,monospace; font-size:12px; line-height:1.65;
+    color:var(--ink); background:var(--surface-2);
+    border:1px solid var(--line); border-radius:8px; padding:11px;
+  }
+  textarea#reflowText:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
+  textarea#song{
+    width:100%; min-height:230px; resize:vertical;
+    font-family:"DM Mono",ui-monospace,Menlo,monospace; font-size:13px; line-height:1.7;
+    color:var(--ink); background:var(--surface-2);
+    border:1px solid var(--line); border-radius:8px; padding:12px;
+    tab-size:4;
+  }
+  textarea#song:focus-visible, input:focus-visible, select:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent); outline-offset:2px;
+  }
+  .hint{font-size:12.5px; color:var(--faint); margin:8px 0 0;}
+
+  .srcbar{display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:9px;}
+  .srcbar .eyebrow{margin:0;}
+  .srcbar .grow{flex:1; min-width:4px;}
+  .btn.sm{padding:5px 10px; font-size:12.5px; font-weight:500;}
+  .dropzone{position:relative;}
+  .dropzone.over textarea{border-color:var(--accent);}
+  .veil{
+    position:absolute; inset:0; border:2px dashed var(--accent); border-radius:8px;
+    background:var(--accent-bg); display:grid; place-items:center; pointer-events:none;
+    font-size:13.5px; font-weight:600; color:var(--accent);
+  }
+  .busy{
+    position:absolute; inset:0; border-radius:8px; display:grid; place-items:center;
+    background:var(--surface-2); opacity:.93; font-size:13px; font-weight:500; color:var(--muted);
+  }
+  input[type=range]{accent-color:var(--accent); width:100%; min-width:110px;}
+
+  .pdfprev{
+    display:grid; place-items:center; padding:14px; overflow:auto;
+    background:var(--surface-2); border:1px solid var(--line); border-radius:8px;
+  }
+  .pdfprev canvas{max-width:100%; height:auto; background:#fff; box-shadow:var(--shadow);}
+  .pdfprev{position:relative;}
+  .pdfprev .ph{font-size:13px; color:var(--faint);}
+  .pagearrow{
+    all:unset; position:absolute; top:50%; transform:translateY(-50%);
+    width:48px; height:76px; border-radius:13px; cursor:pointer; z-index:3;
+    display:grid; place-items:center;
+    background:var(--surface); border:1px solid var(--line); color:var(--muted);
+    box-shadow:var(--shadow);
+  }
+  .pagearrow:hover{color:var(--accent); border-color:var(--accent);}
+  .pagearrow:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
+  .pagearrow.left{left:10px;}
+  .pagearrow.right{right:10px;}
+  .pagearrow svg{width:28px; height:28px;}
+  .pdfprev canvas{cursor:grab; touch-action:none;}
+  .pdfprev canvas:focus-visible{outline:2px solid var(--accent); outline-offset:3px;}
+  .placebar{display:flex; align-items:center; gap:10px 12px; margin-top:10px; flex-wrap:wrap;}
+  .placebar .grow{flex:1; min-width:4px;}
+  .readout{
+    font-family:"DM Mono",ui-monospace,Menlo,monospace; font-size:11.5px;
+    color:var(--muted); font-variant-numeric:tabular-nums;
+  }
+  .buildcols{display:grid; grid-template-columns:minmax(0,1fr); gap:16px; align-items:start;}
+  @media (min-width:1000px){
+    .buildcols.has-prev{grid-template-columns:minmax(0,1fr) minmax(0,1fr);}
+    .buildcols.has-prev textarea#reflowText{min-height:430px;}
+    .buildcols.has-prev .sheetpages{max-height:430px;}
+  }
+  .sheetprev{margin-top:0;}
+  .sheetpages{
+    display:flex; flex-direction:column; align-items:center; gap:12px;
+    max-height:560px; overflow-y:auto; padding:12px;
+    background:var(--surface-2); border:1px solid var(--line); border-radius:8px;
+  }
+  .sheetpages canvas{max-width:100%; height:auto; background:#fff; box-shadow:var(--shadow);}
+  .sheetpages .ph{font-size:13px; color:var(--faint);}
+  .warn{font-size:12.5px; color:var(--danger); margin:10px 0 0;}
+
+  .readnote{
+    display:flex; gap:12px; align-items:flex-start; flex-wrap:wrap;
+    margin:10px 0 0; padding:11px 13px;
+    background:var(--accent-bg); border:1px solid var(--line);
+    border-left:3px solid var(--accent); border-radius:9px;
+  }
+  .readnote p{margin:0; flex:1; min-width:230px; font-size:12.5px; line-height:1.55; color:var(--ink);}
+  .readnote b{font-weight:600;}
+  .readnote code{font-family:var(--mono); font-size:12px;}
+  .readnote .btn{flex:0 0 auto; align-self:center;}
+
+  .chips{display:flex; flex-wrap:wrap; gap:6px; margin:0; padding:0; list-style:none;}
+  .chip{
+    display:inline-flex; align-items:center; gap:2px;
+    background:var(--surface-2); border:1px solid var(--line);
+    border-radius:999px; padding:3px 4px 3px 11px;
+    font-size:13.5px; font-weight:500; line-height:1.4;
+  }
+  .chip.bad{border-color:var(--danger); color:var(--danger); background:transparent;}
+  .chip .x{
+    all:unset; cursor:pointer; width:19px; height:19px; border-radius:50%;
+    display:grid; place-items:center; color:var(--faint); font-size:15px; line-height:1;
+  }
+  .chip .x:hover{background:var(--accent-bg); color:var(--accent);}
+  .chip .x:focus-visible{outline:2px solid var(--accent); outline-offset:1px;}
+
+  #strumLib{
+    width:100%; font-family:inherit; font-size:13px; color:var(--ink);
+    background:var(--surface-2); border:1px solid var(--line); border-radius:7px; padding:7px 9px;
+  }
+  .slots{display:flex; gap:4px; margin-top:10px; flex-wrap:wrap;}
+  .slot{
+    all:unset; cursor:pointer; flex:none; width:32px;
+    display:flex; flex-direction:column; align-items:center; gap:1px;
+    border:1px solid var(--line); border-radius:6px; padding:5px 0 3px;
+    background:var(--surface-2);
+  }
+  .slot:hover{border-color:var(--accent);}
+  .slot:focus-visible{outline:2px solid var(--accent); outline-offset:1px;}
+  .slot .sym{font-size:16px; line-height:1.1; height:19px; color:var(--ink);}
+  .slot.rest .sym{color:var(--faint);}
+  .slot .beat{
+    font-family:"DM Mono",ui-monospace,Menlo,monospace; font-size:9.5px; color:var(--faint);
+  }
+  .addrow{display:flex; gap:6px; margin-top:10px; align-items:center;}
+  .addrow input{
+    flex:1; min-width:0; font-family:"DM Mono",ui-monospace,Menlo,monospace; font-size:13px;
+    background:var(--surface-2); color:var(--ink);
+    border:1px solid var(--line); border-radius:7px; padding:7px 10px;
+  }
+
+  button{font-family:inherit; font-size:13.5px;}
+  .btn{
+    cursor:pointer; border-radius:7px; padding:8px 13px; font-weight:600;
+    border:1px solid var(--line); background:var(--surface-2); color:var(--ink);
+  }
+  .btn:hover{border-color:var(--accent); color:var(--accent);}
+  .btn.primary{background:var(--accent); border-color:var(--accent); color:var(--accent-ink);}
+  .btn.primary:hover{filter:brightness(1.08); color:var(--accent-ink);}
+  .btn[disabled]{opacity:.45; cursor:not-allowed;}
+
+  /* controls */
+  .controls{
+    display:flex; flex-wrap:wrap; gap:10px 16px; align-items:flex-end;
+    padding-bottom:14px; margin-bottom:14px; border-bottom:1px solid var(--line-soft);
+  }
+  .field{display:flex; flex-direction:column; gap:4px;}
+  .field label{font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:.08em; color:var(--muted);}
+  .field select, .field input[type=text], .field input[type=number]{
+    font-family:inherit; font-size:13px; color:var(--ink);
+    background:var(--surface-2); border:1px solid var(--line);
+    border-radius:7px; padding:6px 9px;
+  }
+  .field.grow{flex:1; min-width:140px;}
+  .field.grow input{width:100%;}
+  .toggles{display:flex; gap:14px; align-items:center; flex-wrap:wrap;}
+  .tg{display:inline-flex; align-items:center; gap:6px; font-size:13px; color:var(--ink); cursor:pointer;}
+  .tg input{accent-color:var(--accent); width:15px; height:15px;}
+
+  /* paper */
+  .paper{
+    border:1px solid var(--line); border-radius:8px;
+    padding:14px; overflow-x:auto;
+    transition:background .15s ease;
+  }
+  .paper canvas{display:block; height:auto; cursor:pointer; margin:0 auto;}
+  .paper.empty{
+    display:grid; place-items:center; min-height:150px;
+    color:var(--faint); font-size:13.5px; text-align:center;
+  }
+
+  .cyclehint{
+    margin:10px 0 0; font-size:13px; color:var(--muted);
+    display:flex; align-items:center; gap:7px;
+  }
+  .cyclehint::before{
+    content:""; flex:none; width:7px; height:7px; border-radius:50%; background:var(--accent);
+  }
+  .caption{
+    font-family:"DM Mono",ui-monospace,Menlo,monospace; font-size:11.5px;
+    color:var(--faint); margin:10px 0 0; line-height:1.9; word-break:break-word;
+  }
+  .caption b{color:var(--muted); font-weight:500;}
+
+  .actions{display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; align-items:center;}
+  .actions .sep{flex:1;}
+  .note{font-size:12.5px; color:var(--faint); margin:12px 0 0;}
+
+  .toast{
+    position:fixed; left:50%; transform:translateX(-50%);
+    bottom:calc(20px + env(safe-area-inset-bottom, 0px));
+    background:var(--ink); color:var(--bg);
+    padding:9px 16px; border-radius:999px; font-size:13.5px; font-weight:500;
+    box-shadow:var(--shadow); z-index:50; max-width:calc(100vw - 32px); text-align:center;
+  }
+  .toast.bad{background:var(--danger); color:#fff;}
+  @media (prefers-reduced-motion:no-preference){
+    .toast{animation:pop .18s ease-out;}
+    @keyframes pop{from{opacity:0; transform:translate(-50%,6px);} to{opacity:1; transform:translate(-50%,0);}}
+  }
+
+  footer.legend{
+    margin-top:26px; padding-top:16px; border-top:1px solid var(--line);
+    display:grid; gap:6px 28px; grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    font-size:12.5px; color:var(--muted);
+  }
+  footer.legend b{color:var(--ink); font-weight:600;}
+  code{font-family:"DM Mono",ui-monospace,Menlo,monospace; font-size:.92em; color:var(--accent);}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>Guitar and Ukulele Chord Strip</h1>
+      <p class="tagline">Paste in a song sheet or import a PDF, and get a row of fingering diagrams to add to a printable PDF.</p>
+    </div>
+    <div class="tools">
+      <div class="seg" role="group" aria-label="Instrument">
+        <button class="segbtn is-on" id="instUke" type="button">Ukulele</button>
+        <button class="segbtn" id="instGuitar" type="button">Guitar</button>
+      </div>
+      <span class="tuning" id="tuningTxt">standard GCEA</span>
+      <button class="themebtn" id="themeBtn" type="button" aria-label="Switch to dark mode" title="Switch to dark mode">
+        <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></svg>
+      </button>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Sections">
+    <button class="tab is-on" id="tab-song" data-pane="song" role="tab" aria-selected="true" type="button">Your Song</button>
+    <button class="tab" id="tab-chords" data-pane="chords" role="tab" aria-selected="false" type="button">Chords Found</button>
+    <button class="tab" id="tab-strum" data-pane="strum" role="tab" aria-selected="false" type="button">Strumming</button>
+    <button class="tab" id="tab-pdf" data-pane="pdf" role="tab" aria-selected="false" type="button">PDF</button>
+  </nav>
+
+  <section class="pane is-on" id="pane-song" role="tabpanel" aria-labelledby="tab-song">
+    <div class="panel">
+      <div class="srcbar">
+        <p class="eyebrow">Your song</p>
+        <span class="grow"></span>
+        <button class="btn sm" id="clipBtn" type="button">Paste clipboard</button>
+        <button class="btn sm" id="fileBtn" type="button">Open PDF&hellip;</button>
+        <input type="file" id="fileInput" hidden
+               accept=".pdf,.txt,.text,.md,.cho,.crd,.pro,.chopro,application/pdf,text/plain">
+      </div>
+      <div class="dropzone" id="dropzone">
+        <textarea id="song" spellcheck="false" aria-label="Song text"></textarea>
+        <div class="veil" id="veil" hidden><span>Drop a PDF or text file</span></div>
+        <div class="busy" id="busy" hidden><span id="busyMsg">Reading&hellip;</span></div>
+      </div>
+      <div class="readnote" id="readNote" hidden>
+        <p id="readNoteText"></p>
+        <button class="btn sm" id="readNoteBtn" type="button">Add chords by hand</button>
+      </div>
+      <p class="hint">Type or paste chords, or drop a PDF on the box and it reads the chords out of the text layer. Chord lines, <code>[C]</code> brackets and bar charts all work. The example clears when you click in.</p>
+    </div>
+  </section>
+
+  <section class="pane" id="pane-chords" role="tabpanel" aria-labelledby="tab-chords">
+    <div class="panel" style="margin-top:16px">
+      <p class="eyebrow">Chords found <span class="count" id="chordCount"></span></p>
+      <ul class="chips" id="chips"></ul>
+      <div class="addrow">
+        <input id="addInput" type="text" placeholder="Add a chord, e.g. Bbmaj7" aria-label="Add a chord">
+        <button class="btn" id="addBtn">Add</button>
+      </div>
+      <p class="hint" id="chipHint"></p>
+    </div>
+
+    <div class="panel">
+      <div class="controls">
+        <div class="field grow">
+          <label for="heading">Heading</label>
+          <input id="heading" type="text" placeholder="none">
+        </div>
+        <div class="field">
+          <label for="perRow">Per row</label>
+          <select id="perRow">
+            <option value="0">Auto</option>
+            <option value="4">4</option><option value="5">5</option>
+            <option value="6">6</option><option value="8">8</option>
+            <option value="10">10</option><option value="12">12</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="ink">Ink</label>
+          <select id="ink"><option value="black">Black</option><option value="white">White</option></select>
+        </div>
+        <div class="field">
+          <label for="scale">Export</label>
+          <select id="scale">
+            <option value="2">2&times;</option><option value="3">3&times;</option><option value="4">4&times;</option>
+          </select>
+        </div>
+        <div class="toggles">
+          <label class="tg"><input type="checkbox" id="tgFingers"> Finger numbers</label>
+          <label class="tg"><input type="checkbox" id="tgOpen"> Open marks</label>
+        </div>
+      </div>
+
+      <div class="paper" id="paper"></div>
+      <p class="cyclehint">Click any chord diagram to cycle through other ways to play it. The counter after each chord below shows which version you&rsquo;re on.</p>
+      <p class="caption" id="caption"></p>
+
+      <div class="actions">
+        <button class="btn primary" id="copyBtn">Copy PNG</button>
+        <button class="btn" id="pngBtn" hidden>Save PNG</button>
+        <button class="btn" id="svgBtn" hidden>Save SVG</button>
+        <span class="sep"></span>
+        <button class="btn" id="resetBtn" title="Reset every chord to its standard shape">Reset shapes</button>
+      </div>
+      <p class="note">The PNG copies with a transparent background, so it sits on a page without a white box.</p>
+    </div>
+    <footer class="legend">
+      <div id="legendStrings"><b>Reading a diagram.</b> Strings run G&ndash;C&ndash;E&ndash;A left to right. The thick bar at the top is the nut; <code>5fr</code> at the right means the window starts at the 5th fret instead.</div>
+      <div><b>Barres.</b> A long rounded bar means one finger lies flat across those strings.</div>
+      <div><b>Naming.</b> Each diagram is labelled with how the chord was understood &mdash; so <code>C#M</code> coming back as <code>C&#9839;</code> rather than <code>C&#9839;m</code> is visible before you paste.</div>
+    </footer>
+  </section>
+
+  <section class="pane" id="pane-strum" role="tabpanel" aria-labelledby="tab-strum">
+    <div class="panel" style="margin-top:16px">
+      <div class="srcbar">
+        <p class="eyebrow">Strumming</p>
+        <span class="grow"></span>
+        <label class="tg"><input type="checkbox" id="strumOn"> Add to the strip</label>
+      </div>
+      <div id="strumBody">
+        <select id="strumLib" aria-label="Pattern library"></select>
+        <div class="slots" id="strumSlots"></div>
+        <div class="addrow">
+          <input id="strumText" type="text" spellcheck="false" aria-label="Pattern as text"
+                 placeholder="D-DU-UDU">
+          <label class="tg"><input type="checkbox" id="strumShowName"> Name it</label>
+        </div>
+        <p class="hint" id="strumSongs"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="pane" id="pane-pdf" role="tabpanel" aria-labelledby="tab-pdf">
+    <nav class="subtabs" role="tablist" aria-label="PDF mode">
+      <button class="subtab is-on" id="subBuild" data-sub="build" type="button">Build a sheet</button>
+      <button class="subtab" id="subStamp" data-sub="stamp" type="button">Display &amp; stamp</button>
+    </nav>
+    <p class="subnote" id="subNote" hidden></p>
+    <p class="emptyhint" id="pdfEmpty">Paste a song into <b>Your Song</b>, or drop a PDF there, and this tab fills in.</p>
+    <div class="subpane is-on" id="subpane-build">
+    <div class="panel" id="reflowPanel" hidden style="margin-top:16px">
+      <div class="srcbar">
+        <p class="eyebrow" id="reflowTitleLbl">Build a sheet PDF</p>
+        <span class="readout" id="reflowStat"></span>
+        <span class="grow"></span>
+        <span class="readout" id="sheetInfo"></span>
+        <button class="btn primary" id="sheetSave" type="button" disabled>Save PDF</button>
+      </div>
+      <div class="controls" style="padding-bottom:12px; margin-bottom:10px">
+        <div class="field grow">
+          <label for="reflowMode">Chord layout</label>
+          <select id="reflowMode">
+            <option value="above" selected>Keep chords on the line above</option>
+            <option value="inline">Fold chords into the words as [C]</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="reflowPages">Fit to</label>
+          <select id="reflowPages">
+            <option value="1">1 page</option>
+            <option value="2">2 pages</option>
+            <option value="3">3 pages</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="reflowMargin">Margins (in)</label>
+          <input type="number" id="reflowMargin" min="0.25" max="2" step="0.125" value="0.5" style="width:84px">
+        </div>
+        <div class="field">
+          <label for="reflowMin">Smallest type (pt)</label>
+          <input type="number" id="reflowMin" min="4" max="24" step="0.5" value="11"
+                 list="minSizeHints" style="width:82px">
+          <datalist id="minSizeHints">
+            <option value="12"></option><option value="11"></option><option value="10"></option>
+            <option value="9"></option><option value="8"></option><option value="7"></option>
+            <option value="6"></option>
+          </datalist>
+        </div>
+        <div class="toggles">
+          <label class="tg"><input type="checkbox" id="reflowStrip" checked> Chord strip</label>
+          <label class="tg"><input type="checkbox" id="reflowHead" checked> Title</label>
+          <label class="tg"><input type="checkbox" id="reflowStrum" checked> Strumming</label>
+        </div>
+        <div class="toggles">
+          <button class="btn primary" id="reflowBuild" type="button">Build short sheet</button>
+        </div>
+      </div>
+      <p class="hint" id="reflowHint" style="margin:0 0 9px"></p>
+      <div class="addrow" style="margin:0 0 10px">
+        <input id="reflowTitleIn" type="text" placeholder="Song title" aria-label="Song title">
+        <input id="reflowArtistIn" type="text" placeholder="Artist" aria-label="Artist">
+      </div>
+      <div class="buildcols" id="buildCols">
+        <textarea id="reflowText" spellcheck="false" aria-label="Reformatted sheet"></textarea>
+        <div class="sheetprev" id="sheetPrev" hidden>
+          <div class="sheetpages" id="sheetPages"></div>
+        </div>
+      </div>
+    </div>
+    </div>
+    <div class="subpane" id="subpane-stamp">
+    <div class="panel" id="pdfPanel" hidden style="margin-top:16px">
+      <div class="srcbar">
+        <p class="eyebrow">Stamp onto the PDF <span class="count" id="pdfName"></span></p>
+        <span class="grow"></span>
+        <button class="btn primary" id="pdfSave" type="button">Save PDF with chords</button>
+      </div>
+      <div class="controls">
+        <div class="field">
+          <label id="pagerLbl">Page</label>
+          <div class="pager" role="group" aria-labelledby="pagerLbl">
+            <span class="lbl" id="pdfPageLbl">1 / 1</span>
+            <input type="hidden" id="pdfPage" value="1">
+          </div>
+        </div>
+        <div class="field">
+          <label for="pdfAnchor">Snap to</label>
+          <select id="pdfAnchor">
+            <option value="tl">Top left</option>
+            <option value="tc" selected>Top centre</option>
+            <option value="tr">Top right</option>
+            <option value="bl">Bottom left</option>
+            <option value="bc">Bottom centre</option>
+            <option value="br">Bottom right</option>
+          </select>
+        </div>
+        <div class="toggles">
+          <label class="tg"><input type="checkbox" id="pdfThisPage" checked> Chords on this page</label>
+          <label class="tg"><input type="checkbox" id="pdfAllPages"> Every page</label>
+          <label class="tg"><input type="checkbox" id="pdfBacking"> White backing</label>
+        </div>
+      </div>
+      <p class="hint" style="margin:0 0 11px"><b>Drag the chord strip to move it; drag the square handle at its bottom-right corner to resize it.</b> Each page keeps its own position and size, so you can place it differently on every page. Arrow keys nudge it a point at a time, Shift for ten.</p>
+      <div class="pdfprev" id="pdfPrev">
+        <button class="pagearrow left" id="pdfPrevPage" type="button" aria-label="Previous page" hidden>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button class="pagearrow right" id="pdfNextPage" type="button" aria-label="Next page" hidden>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+        <span class="ph" id="pdfPh">Rendering page&hellip;</span>
+      </div>
+      <div class="placebar">
+        <span class="readout" id="pdfReadout"></span>
+        <span class="grow"></span>
+        <button class="btn sm" id="pdfSnap" type="button">Snap to edge</button>
+      </div>
+      <p class="warn" id="pdfWarn" hidden></p>
+      <p class="note">Saves a new copy alongside &mdash; the file you dropped in is never modified.</p>
+    </div>
+    </div>
+  </section>
+
+  </div>
+</div>
+
+<script>
+(function(){
+"use strict";
+
+/* ============================ 1. Music theory ============================ */
+
+var INSTRUMENTS = {
+  uke:    { label:"Ukulele", tuning:"standard GCEA",
+            open:[67, 60, 64, 69],             // G4 C4 E4 A4, left to right
+            marks:false, gap:13 },
+  guitar: { label:"Guitar",  tuning:"standard EADGBE",
+            open:[40, 45, 50, 55, 59, 64],     // E2 A2 D3 G3 B3 E4
+            marks:true,  gap:11.5 }
+};
+var INST = "uke";
+function inst(){ return INSTRUMENTS[INST] || INSTRUMENTS.uke; }
+function openMidi(){ return inst().open; }
+function nStrings(){ return inst().open.length; }
+var SHARP_NAMES = ["C","C#","D","D#","E","F","F#","G","G#","A","A#","B"];
+var FLAT_NAMES  = ["C","Db","D","Eb","E","F","Gb","G","Ab","A","Bb","B"];
+var PITCH = {C:0,"B#":0,"C#":1,"Db":1,D:2,"D#":3,"Eb":3,E:4,"Fb":4,"E#":5,F:5,
+             "F#":6,"Gb":6,G:7,"G#":8,"Ab":8,A:9,"A#":10,"Bb":10,B:11,"Cb":11};
+
+// [key, intervals, required intervals, display suffix, aliases]
+var QUALITIES = [
+  ["maj",   [0,4,7],        [0,4],       "",      ["","M","maj","Maj","MAJ","major","Major","Δ","ma"]],
+  ["min",   [0,3,7],        [0,3],       "m",     ["m","min","Min","MIN","minor","Minor","-"]],
+  ["5",     [0,7],          [0,7],       "5",     ["5","no3","No3","NO3"]],
+  ["dim",   [0,3,6],        [0,3,6],     "dim",   ["dim","Dim","DIM","o","°","º"]],
+  ["dim7",  [0,3,6,9],      [0,3,6,9],   "dim7",  ["dim7","Dim7","DIM7","o7","°7","º7"]],
+  ["aug",   [0,4,8],        [0,4,8],     "aug",   ["aug","Aug","AUG","+","#5","+5"]],
+  ["sus2",  [0,2,7],        [0,2,7],     "sus2",  ["sus2","Sus2","SUS2"]],
+  ["sus4",  [0,5,7],        [0,5,7],     "sus4",  ["sus4","Sus4","SUS4","sus","Sus","SUS"]],
+  ["6",     [0,4,7,9],      [0,4,9],     "6",     ["6","maj6","M6","Maj6"]],
+  ["m6",    [0,3,7,9],      [0,3,9],     "m6",    ["m6","min6","Min6","-6"]],
+  ["69",    [0,2,4,7,9],    [0,4,9,2],   "6/9",   ["69","6/9","6add9"]],
+  ["7",     [0,4,7,10],     [0,4,10],    "7",     ["7","dom7","Dom7","dom","7th"]],
+  ["maj7",  [0,4,7,11],     [0,4,11],    "maj7",  ["maj7","Maj7","MAJ7","M7","Δ7","ma7","major7","Major7","j7"]],
+  ["m7",    [0,3,7,10],     [0,3,10],    "m7",    ["m7","min7","Min7","MIN7","minor7","-7"]],
+  ["mmaj7", [0,3,7,11],     [0,3,11],    "mMaj7", ["mmaj7","mMaj7","mM7","minmaj7","-Δ7"]],
+  ["m7b5",  [0,3,6,10],     [0,3,6,10],  "m7b5",  ["m7b5","min7b5","ø","ø7","m7-5","-7b5","halfdim"]],
+  ["7sus4", [0,5,7,10],     [0,5,10],    "7sus4", ["7sus4","7sus","7Sus4","7SUS4","sus47"]],
+  ["add9",  [0,2,4,7],      [0,4,2],     "add9",  ["add9","Add9","ADD9","add2","Add2"]],
+  ["madd9", [0,2,3,7],      [0,3,2],     "madd9", ["madd9","minadd9","madd2"]],
+  ["9",     [0,2,4,7,10],   [0,4,10,2],  "9",     ["9","dom9","Dom9"]],
+  ["maj9",  [0,2,4,7,11],   [0,4,11,2],  "maj9",  ["maj9","Maj9","M9","Δ9","major9"]],
+  ["m9",    [0,2,3,7,10],   [0,3,10,2],  "m9",    ["m9","min9","Min9","-9","minor9"]],
+  ["11",    [0,2,5,7,10],   [0,10,5],    "11",    ["11","dom11"]],
+  ["m11",   [0,2,3,5,7,10], [0,3,10,5],  "m11",   ["m11","min11","-11"]],
+  ["13",    [0,4,7,9,10],   [0,4,10,9],  "13",    ["13","dom13"]],
+  ["m13",   [0,3,7,9,10],   [0,3,10,9],  "m13",   ["m13","min13","-13"]],
+  ["7b9",   [0,1,4,7,10],   [0,4,10,1],  "7b9",   ["7b9","7-9"]],
+  ["7#9",   [0,3,4,7,10],   [0,4,10,3],  "7#9",   ["7#9","7+9"]],
+  ["7b5",   [0,4,6,10],     [0,4,6,10],  "7b5",   ["7b5","7-5"]],
+  ["7#5",   [0,4,8,10],     [0,4,8,10],  "7#5",   ["7#5","7+5","aug7","7aug","+7"]]
+];
+
+var STRICT_BLOCK = {"o":1, "ma":1, "dom":1, "Dom":1};
+var Q_EXACT = {}, Q_LOOSE = {};
+QUALITIES.forEach(function(q){
+  q[4].forEach(function(a){
+    if(!(a in Q_EXACT)) Q_EXACT[a] = q;
+    var lk = a.toLowerCase();
+    // loose lookup is only safe where case cannot flip major/minor
+    if(lk.charAt(0) !== "m" && !(lk in Q_LOOSE)) Q_LOOSE[lk] = q;
+  });
+});
+
+// Standard first-position shapes, indexed by pitch class (C=0 .. B=11).
+var UKE_STANDARD = {
+  maj : ["0003","1114","2220","3331","4442","2010","3121","0232","5343","2100","3211","4322"],
+  min : ["0333","1444","2210","3321","0432","1013","2120","0231","1342","2000","3111","4222"],
+  "7" : ["0001","1112","2223","3334","1202","2310","3424","0212","1323","0100","1211","2322"],
+  m7  : ["3333","4444","2213","3324","0202","1313","2424","0211","1322","0000","1111","2222"],
+  maj7: ["0002","1113","2224","3335","1302","2413","3524","0222","1333","1100","3210","3322"],
+  sus4: ["0013","1124","0230","1341","4452","3011","4122","0233","1344","2200","3311","4422"]
+};
+
+/* Guitar: the open shapes everyone learns, then the two movable barre shapes
+   (rooted on the 6th and 5th strings) for everything else. -1 = muted. */
+var GUITAR_OPEN = {
+  maj : {0:"x32010", 2:"xx0232", 4:"022100", 5:"133211", 7:"320003", 9:"x02220", 11:"x24442"},
+  min : {2:"xx0231", 4:"022000", 7:"355333", 9:"x02210", 11:"x24432"},
+  "7" : {0:"x32310", 2:"xx0212", 4:"020100", 7:"320001", 9:"x02020", 11:"x21202"},
+  m7  : {2:"xx0211", 4:"020000", 9:"x02010"},
+  maj7: {0:"x32000", 2:"xx0222", 4:"021100", 5:"xx3210", 7:"320002", 9:"x02120"},
+  sus4: {2:"xx0233", 4:"022200", 9:"x02230", 7:"320013"},
+  sus2: {2:"xx0230", 9:"x02200", 0:"x30010"}
+};
+var GUITAR_MOVABLE = {           // offsets from the barre fret; null = muted
+  maj : [[0,2,2,1,0,0], [null,0,2,2,2,0]],
+  min : [[0,2,2,0,0,0], [null,0,2,2,1,0]],
+  "7" : [[0,2,0,1,0,0], [null,0,2,0,2,0]],
+  m7  : [[0,2,0,0,0,0], [null,0,2,0,1,0]],
+  maj7: [[0,2,1,1,0,0], [null,0,2,1,2,0]],
+  sus4: [[0,2,2,2,0,0], [null,0,2,2,3,0]],
+  sus2: [[null,null,0,2,3,0], [null,0,2,2,0,0]],
+  6   : [[0,2,2,1,2,0], [null,0,2,2,2,2]],
+  m6  : [[0,2,2,0,2,0], [null,0,2,0,1,2]],
+  m7b5: [[null,0,1,0,1,null], [null,0,1,0,1,null]],
+  dim7: [[null,null,0,1,0,1], [null,0,1,0,1,null]],
+  aug : [[null,0,3,2,2,1], [null,0,3,2,2,1]],
+  9   : [[null,0,2,0,1,0], [null,0,2,0,1,0]],
+  m9  : [[null,0,0,0,1,0], [null,0,0,0,1,0]]
+};
+function parseShapeStr(str){
+  return str.split("").map(function(c){ return (c === "x" || c === "X") ? -1 : Number(c); });
+}
+function guitarStandard(chord){
+  if(chord.bassPc != null) return null;
+  var openT = GUITAR_OPEN[chord.qual];
+  if(openT && openT[chord.rootPc]) return parseShapeStr(openT[chord.rootPc]);
+  var mv = GUITAR_MOVABLE[chord.qual];
+  if(!mv) return null;
+  var nE = (((chord.rootPc - 4) % 12) + 12) % 12;
+  var nA = (((chord.rootPc - 9) % 12) + 12) % 12;
+  var pick = null;
+  if(nE >= 1 && nE <= 8) pick = {sh:mv[0], n:nE};
+  if(nA >= 1 && nA <= 8 && (!pick || nA < pick.n)) pick = {sh:mv[1], n:nA};
+  if(!pick) return null;
+  return pick.sh.map(function(o){ return o === null ? -1 : o + pick.n; });
+}
+function standardShape(chord){
+  if(nStrings() > 4) return guitarStandard(chord);
+  if(chord.bassPc != null) return null;
+  var tbl = UKE_STANDARD[chord.qual];
+  var str = tbl && tbl[chord.rootPc];
+  return str ? str.split("").map(Number) : null;
+}
+
+function parseChord(raw, strict){
+  if(raw == null) return null;
+  var s = String(raw).trim().replace(/–|—/g,"-");
+  if(!s || s.length > 14) return null;
+  var re = strict ? /^([A-G])([#♯b♭]?)(.*)$/ : /^([A-Ga-g])([#♯b♭]?)(.*)$/;
+  var m = re.exec(s);
+  if(!m) return null;
+  var letter = m[1].toUpperCase();
+  var acc = m[2].replace("♯","#").replace("♭","b");
+  var rest = m[3];
+
+  var bass = null;
+  var bm = /\/([A-Ga-g])([#♯b♭]?)$/.exec(rest);
+  if(bm){
+    bass = bm[1].toUpperCase() + bm[2].replace("♯","#").replace("♭","b");
+    rest = rest.slice(0, bm.index);
+  }
+  var q = rest.replace(/[()\s._−]/g, "");
+  // When scanning a song, shorthands that double as ordinary words are off:
+  // "Go", "Do" and "Bo" are not diminished chords.
+  if(strict && STRICT_BLOCK[q]) return null;
+  var qual = Object.prototype.hasOwnProperty.call(Q_EXACT, q) ? Q_EXACT[q] : null;
+  if(!qual){
+    var lk = q.toLowerCase();
+    if(lk.charAt(0) !== "m" && Object.prototype.hasOwnProperty.call(Q_LOOSE, lk)) qual = Q_LOOSE[lk];
+  }
+  if(!qual) return null;
+
+  var rootName = letter + acc;
+  if(!(rootName in PITCH)) return null;
+  var rootPc = PITCH[rootName];
+  var bassPc = (bass && bass in PITCH) ? PITCH[bass] : null;
+  var flat = acc === "b";
+
+  return {
+    root: rootName, rootPc: rootPc, flat: flat,
+    qual: qual[0], intervals: qual[1], required: qual[2], suffix: qual[3],
+    bass: bass, bassPc: bassPc,
+    name: rootName + qual[3] + (bass ? "/" + bass : "")
+  };
+}
+
+/* ------------------------- fingering & voicings ------------------------- */
+
+function fingerFor(frets){
+  var N = frets.length, fingers = [], barre = null, fretted = [];
+  for(var z=0; z<N; z++) fingers.push(0);
+  for(var i=0;i<N;i++) if(frets[i] > 0) fretted.push({f:frets[i], i:i});
+  if(!fretted.length) return {fingers:fingers, barre:null};
+
+  var byFret = {};
+  fretted.forEach(function(x){ (byFret[x.f] = byFret[x.f] || []).push(x.i); });
+  var fretsAsc = Object.keys(byFret).map(Number).sort(function(a,b){return a-b;});
+
+  var finger = 1;
+  fretsAsc.forEach(function(f){
+    var idxs = byFret[f].sort(function(a,b){return a-b;});
+    var lo = idxs[0], hi = idxs[idxs.length-1];
+    var others = fretted.length - idxs.length;
+    var isBarre;
+    if(N > 4){
+      // A guitar barre lies under everything between its ends: no open or
+      // muted string may interrupt it.
+      var filled = true;
+      for(var k=lo;k<=hi;k++) if(frets[k] < f) filled = false;
+      isBarre = idxs.length >= 2 && filled && f === fretsAsc[0] &&
+                (hi - lo + 1) >= 4 &&            // a real barre reaches across the neck
+                (others > 0 || idxs.length >= 3);
+    } else {
+      var contiguous = (hi - lo + 1) === idxs.length;
+      isBarre = contiguous && idxs.length >= 2 &&
+                (others > 0 || idxs.length >= 4) &&
+                (f === fretsAsc[0] || idxs.length >= 3);
+    }
+    if(isBarre){
+      var fg = Math.min(finger, 4);
+      for(var j=lo;j<=hi;j++) if(frets[j] === f) fingers[j] = fg;
+      if(!barre) barre = {fret:f, from:lo, to:hi, finger:fg};
+      finger++;
+    } else {
+      idxs.forEach(function(i){ fingers[i] = Math.min(finger, 4); finger++; });
+    }
+  });
+
+  // Two groups a stretch apart: the far group takes the ring finger.
+  if(fretsAsc.length === 2 && (fretsAsc[1] - fretsAsc[0]) >= 2){
+    var upper = byFret[fretsAsc[1]], vals = {};
+    upper.forEach(function(i){ vals[fingers[i]] = 1; });
+    if(Object.keys(vals).length === 1 && fingers[upper[0]] === 2){
+      upper.forEach(function(i){ fingers[i] = 3; });
+      if(barre && barre.fret === fretsAsc[1]) barre.finger = 3;
+    }
+  }
+  return {fingers:fingers, barre:barre};
+}
+
+function shapeFor(frets, chord){
+  var fb = fingerFor(frets), open = openMidi(), uniq = {};
+  for(var i=0;i<frets.length;i++) if(frets[i] >= 0) uniq[(open[i] + frets[i]) % 12] = 1;
+  return {
+    frets: frets.slice(),
+    fingers: fb.fingers,
+    barre: fb.barre,
+    pcs: Object.keys(uniq).map(Number).sort(function(a,b){ return a-b; })
+  };
+}
+
+function scoreShape(sh, chord, chordPcs){
+  var frets = sh.frets, N = frets.length, open = openMidi();
+  var fretted = frets.filter(function(f){ return f > 0; });
+  var openCount = frets.filter(function(f){ return f === 0; }).length;
+  var muted = frets.filter(function(f){ return f < 0; }).length;
+  var minF = fretted.length ? Math.min.apply(null, fretted) : 0;
+  var maxF = fretted.length ? Math.max.apply(null, fretted) : 0;
+  var span = fretted.length ? maxF - minF : 0;
+  var used = {}; sh.fingers.forEach(function(f){ if(f) used[f] = 1; });
+  var fingerCount = Object.keys(used).length;
+
+  var s = 0;
+  s += minF * 2.6;
+  s += maxF * 0.9;
+  s += span * 1.2;
+  s += fingerCount * 1.4;
+  s -= openCount * 1.8;
+  s += muted * 2.2;
+
+  // a silent string wedged between two ringing ones is hard to play cleanly
+  var first = -1, last = -1;
+  for(var i=0;i<N;i++) if(frets[i] >= 0){ if(first < 0) first = i; last = i; }
+  for(i=first;i<=last;i++) if(frets[i] < 0) s += 6;
+
+  if(sh.pcs.indexOf(chord.rootPc) < 0) s += 7;
+  var want = Math.min(N, chordPcs.length);
+  s += Math.max(0, want - sh.pcs.length) * 3.2;
+
+  var lowest = 9999, lowPc = -1;
+  for(i=0;i<N;i++) if(frets[i] >= 0){
+    var m = open[i] + frets[i];
+    if(m < lowest){ lowest = m; lowPc = m % 12; }
+  }
+  if(chord.bassPc != null){ if(lowPc !== chord.bassPc) s += 3.5; }
+  else if(N > 4 && lowPc !== chord.rootPc) s += 4.5;
+  return s;
+}
+
+function voicingsFor(chord){
+  var open = openMidi(), N = open.length;
+  var allowMute = N > 4;
+  var allowed = {}, chordPcs = [];
+  chord.intervals.forEach(function(iv){
+    var pc = (chord.rootPc + iv) % 12;
+    if(!allowed[pc]){ allowed[pc] = 1; chordPcs.push(pc); }
+  });
+  if(chord.bassPc != null && !allowed[chord.bassPc]){ allowed[chord.bassPc] = 1; chordPcs.push(chord.bassPc); }
+  var reqPcs = chord.required.map(function(iv){ return (chord.rootPc + iv) % 12; });
+
+  // Per string: mute, open, or any fret whose note belongs to the chord.
+  var MAXF = 12, cands = [];
+  for(var si=0; si<N; si++){
+    var list = [];
+    if(allowMute) list.push(-1);
+    for(var f=0; f<=MAXF; f++) if(allowed[(open[si] + f) % 12]) list.push(f);
+    cands.push(list);
+  }
+
+  var found = [], seen = {}, cur = new Array(N);
+  var minSound = allowMute ? 3 : N;
+
+  (function walk(si, lo, hi, sounding){
+    if(found.length > 3000) return;
+    if(si === N){
+      if(sounding < minSound) return;
+      var pcs = {};
+      for(var i=0;i<N;i++) if(cur[i] >= 0) pcs[(open[i] + cur[i]) % 12] = 1;
+      for(var r=0;r<reqPcs.length;r++) if(!pcs[reqPcs[r]]) return;
+      var key = cur.join(",");
+      if(seen[key]) return;
+      seen[key] = 1;
+      var sh = shapeFor(cur.slice(), chord);
+      sh.score = scoreShape(sh, chord, chordPcs);
+      found.push(sh);
+      return;
+    }
+    for(var c=0;c<cands[si].length;c++){
+      var f = cands[si][c], nlo = lo, nhi = hi;
+      if(f > 0){
+        nlo = Math.min(lo, f); nhi = Math.max(hi, f);
+        if(nhi - nlo > 3) continue;
+        if(nhi > 4 && sounding >= 0){
+          // an open string cannot coexist with a window way up the neck
+          var hasOpen = false;
+          for(var k=0;k<si;k++) if(cur[k] === 0) hasOpen = true;
+          if(hasOpen && nhi > 5) continue;
+        }
+      }
+      cur[si] = f;
+      walk(si+1, nlo, nhi, sounding + (f >= 0 ? 1 : 0));
+    }
+  })(0, 99, 0, 0);
+
+  found.sort(function(a,b){ return a.score - b.score; });
+
+  // Put the textbook shape first when there is one.
+  var want = standardShape(chord);
+  if(want && want.length === N){
+    var wk = want.join(",");
+    var at = -1;
+    for(var j=0;j<found.length;j++) if(found[j].frets.join(",") === wk){ at = j; break; }
+    if(at >= 0) found.unshift(found.splice(at,1)[0]);
+    else { var s2 = shapeFor(want, chord); s2.score = -1; found.unshift(s2); }
+  }
+  return found.slice(0, 8);
+}
+
+/* --------------------------- strumming patterns --------------------------- */
+// D = down, U = up, x = muted chunk, - = rest. One slot per eighth note
+// (or sixteenth, for a 16-slot pattern). Song examples are only attached where
+// a published source names them; the rest are left to speak for themselves.
+var STRUM_LIB = [
+  ["D-DU--UD","Acoustic Pop Ballad","acoustic pop"],
+  ["--D---D-","Bluegrass Chop","bluegrass backbeat"],
+  ["D-DU----","Blues Shuffle","blues, swing the eighths"],
+  ["D-D--UDU","Brown Eyed Girl","Van Morrison"],
+  ["D-D-U-UD","Campfire Singalong","singalongs"],
+  ["D-x-DUxU","Chunk on 2 and 4","She Bop · Here Comes Your Man"],
+  ["D-DUD-DU","Common pop strum",""],
+  ["D---DUDU","Country Boom-Chick-a","country, bluegrass"],
+  ["DU-U-UDU","Creep","Radiohead"],
+  ["D-DUDUDU","Down-Up Basic","pop, folk"],
+  ["DU--DU--","Fast Car","Tracy Chapman"],
+  ["D-DU-UD-","Folk Strum","folk, Americana"],
+  ["DU-UDU-U","Funk Chuck Strum","funk, R&B"],
+  ["DU-UD-DU","Good Riddance","Green Day"],
+  ["D-DUD-D-","Good Times Bad Times","Led Zeppelin"],
+  ["DUD-DU--","Gypsy Jazz La Pompe","gypsy jazz, la pompe"],
+  ["D---D---","Half Time","slow, heavy grooves"],
+  ["D-DUUDU-","Hawaiian Strum","Hawaiian"],
+  ["-UD-D-D-","Hey Ya!","OutKast"],
+  ["-UD-D-DU","Horse With No Name / Wonderwall","America · Oasis"],
+  ["DUDU-UDU","Imagine","John Lennon"],
+  ["D--UDU-U","Indie Folk Syncopation","indie folk"],
+  ["D-DU-UDU","Island strum / Classic Pop / Calypso","I'm Yours · Riptide · Over the Rainbow · Better Together · Ho Hey"],
+  ["D-DU-UDUD-DU-UDU","Island, 16ths",""],
+  ["D--DU-D-","Latin Bossa Nova","latin jazz"],
+  ["D--UD-D-","Lay Down Sally","Eric Clapton"],
+  ["DUD-DUD-","Let Her Go / Teen Spirit","Passenger · Nirvana"],
+  ["DU-U-U-U","Mad World","Gary Jules"],
+  ["-UDU-UDU","Mirror Ups","bouncy 2/4 feel"],
+  ["-UDUDU-U","Mr. Jones","Counting Crows"],
+  ["--DU--DU","Reggae skank (2 & 4)","Jamming · Wild World"],
+  ["-U-U-U-U","Ska offbeat ups","reggae, ska"],
+  ["-UDUDUDU","Riptide","Vance Joy"],
+  ["D-DUDU--","Rock Power Strum","rock, punk"],
+  ["D-D-DUD-","Six-Eighth Ballad","6/8 ballads, gospel"],
+  ["D-D-DUDU","Slow Ballad Strum","slow ballads"],
+  ["D----UDU","Somewhere Over the Rainbow","Israel Kamakawiwoʻole"],
+  ["D-UDD-UD","Stately Ballad","A Whiter Shade of Pale, Procol Harum"],
+  ["D-D-D-D-","Steady quarters / Basic Down Strum","Stardust · Corner Pocket"],
+  ["DUDUDUDU","Straight eighths / Travis Sub / Punk","Mustang Sally · Wagon Wheel"],
+  ["DUD-D-D-","Sweet Home Alabama","Lynyrd Skynyrd"],
+  ["DUDUD-D-","Use Somebody","Kings of Leon"],
+  ["D-DUDU","Waltz (3/4)",""],
+  ["-U-U-UDU","With or Without You","U2"],
+  ["DUDUD--U","Yellow","Coldplay"],
+  ["D---D--U","",""],
+  ["D--U-U-U","",""],
+  ["D--U-UDU","",""],
+  ["D--UD--U","",""],
+  ["D--UD-DU","",""],
+  ["D--UDUD-","",""],
+  ["D-D--U-U","",""],
+  ["D-D-D--U","",""],
+  ["D-D-DU-U","",""],
+  ["D-DU---U","",""],
+  ["D-DU--DU","",""],
+  ["D-DU-U-U","",""],
+  ["D-DUD--U","",""],
+  ["D-DUDU-U","",""],
+  ["D-DUxUDx","",""],
+  ["D-Dx-UDU","",""],
+  ["D-xUD-xU","",""],
+  ["DU--D-DU","",""],
+  ["DU--DUDU","",""],
+  ["DU-UD--U","",""],
+  ["DU-UDUDU","",""],
+  ["DUD---DU","",""],
+  ["DUD--UDU","",""],
+  ["DUD-D-DU","",""],
+  ["DUDU--DU","",""],
+  ["DUDUD-DU","",""],
+  ["DUDx-UDU","",""],
+  ["DUxUDxDU","",""],
+  ["Dx-UDxDU","",""],
+  ["DxD-DUxU","",""],
+  ["DxDU-UxU","",""],
+  ["DxDUxUDU","",""]
+];
+
+function parseStrum(txt){
+  if(!txt) return [];
+  var out = [];
+  String(txt).replace(/[\u2013\u2014\u2212]/g, "-").split("").forEach(function(ch){
+    if(ch === "D" || ch === "d") out.push("D");
+    else if(ch === "U" || ch === "u") out.push("U");
+    else if(ch === "X" || ch === "x") out.push("x");
+    else if(ch === "-" || ch === "." || ch === "_" || ch === "0") out.push("-");
+  });
+  return out.slice(0, 16);
+}
+function strumCounts(n){
+  var beats = ["1","2","3","4","5","6","7","8"], out = [];
+  if(n % 4 === 0 && n > 8){                       // sixteenths
+    for(var i=0;i<n;i++) out.push([beats[i>>2], "e", "&", "a"][i % 4]);
+  } else {
+    for(var j=0;j<n;j++) out.push(j % 2 ? "&" : beats[j >> 1]);
+  }
+  return out;
+}
+
+/* ========================== 2. Chord extraction ========================== */
+
+var JUNK = /^[|\/\\\-.,;:x%×—–()\[\]0-9]+$/;
+
+/* A tab staff line: "A|---7---5-3-|", "e-----3--", "C: 0--2--" — a string name
+   followed by mostly dashes, fret numbers and technique marks. Never a chord line. */
+/* "A C E A   B D Gb B   A Eb Gb B ..." — the open-string notes printed under a
+   row of chord diagrams. Bare note names, far too many for a real chord line. */
+function isNoteLegend(line){
+  var toks = line.split(/[\s|]+/).filter(Boolean);
+  if(toks.length < 10) return false;
+  return toks.every(function(t){ return /^[A-G][#b\u266F\u266D]?$/.test(t); });
+}
+
+function isTabLine(line){
+  var m = /^\s*[A-Ga-g][#b]?\s*[|:]?(.*)$/.exec(line);
+  if(!m) return false;
+  var rest = m[1].replace(/\s+/g, "");
+  if(rest.length < 6) return false;
+  var tabby = rest.replace(/[^\-\u2013\u2014|0-9hpbrsx\/\\~^().*]/g, "").length;
+  return (rest.match(/[-\u2013\u2014]/g) || []).length >= 3 && tabby / rest.length >= 0.85;
+}
+
+function tidyToken(t){
+  if(parseChord(t, true)) return t;
+  var stripped = t.replace(/[.,;:!?"'“”‘’)\]]+$/,"").replace(/^[("'“‘\[]+/,"");
+  return stripped;
+}
+
+function extractChords(text){
+  if(!text || !text.trim()) return [];
+  var tokens = [];
+  // ChordPro brackets win, but only when they really hold chords — [Verse] is a section label.
+  var brackets = (text.match(/\[[^\]\n]{1,14}\]/g) || []).map(function(b){
+    return b.slice(1, -1).trim();
+  }).filter(function(t){ return parseChord(t, true); });
+  if(brackets.length >= 2){
+    tokens = brackets;
+  } else {
+    var lines = text.split(/\r?\n/).map(function(line){
+      if(isTabLine(line) || isNoteLegend(line)) return {n:0, keep:[]};
+      var raw = line.split(/[\s|]+/).filter(function(t){ return t && !JUNK.test(t); });
+      var keep = [];
+      raw.forEach(function(t){
+        var c = tidyToken(t);
+        if(parseChord(c, true)) keep.push(c);
+      });
+      return {n: raw.length, keep: keep};
+    });
+    // A chord line is one that is mostly chords.
+    lines.forEach(function(l){
+      if(l.keep.length && l.keep.length / l.n >= 0.6) l.keep.forEach(function(t){ tokens.push(t); });
+    });
+    // Second chance for sheets whose chord lines carry labels ("Intro: G  C  D"),
+    // but never a single stray word in a sentence.
+    if(!tokens.length){
+      lines.forEach(function(l){
+        if(l.keep.length >= 2 && l.keep.length / l.n >= 0.4) l.keep.forEach(function(t){ tokens.push(t); });
+      });
+    }
+  }
+
+  var out = [], seen = {};
+  tokens.forEach(function(t){
+    var ch = parseChord(t, true);
+    if(!ch) return;
+    if(seen[ch.name]) return;
+    seen[ch.name] = 1;
+    out.push(ch.name);
+  });
+  return out;
+}
+
+/* ========================== 3. Diagram drawing ========================== */
+
+var FONT_STACK = '"Helvetica Neue", Helvetica, Arial, sans-serif';
+
+var GLYPHS = (function(){
+  try{
+    var c = document.createElement("canvas").getContext("2d");
+    c.font = "16px " + FONT_STACK;
+    var missing = c.measureText("").width;
+    return c.measureText("♯").width !== missing && c.measureText("♭").width !== missing;
+  }catch(e){ return false; }
+})();
+
+function prettyName(name){
+  if(!GLYPHS) return name;
+  return name.replace(/([A-G])#/g, "$1♯").replace(/([A-G])b/g, "$1♭");
+}
+
+var D = {
+  colW:62, rowH:110,
+  nameSize:15, nameBase:14,
+  gridTop:25, openTop:19,
+  stringGap:13, fretGap:15, nFrets:4,
+  dotR:4.3, nutH:3.4, lineW:1.05,
+  fingerSize:10, fingerDrop:13,
+  posSize:9,
+  pad:9, headSize:12, headDrop:20
+};
+D.gridH = D.fretGap * D.nFrets;
+function applyInstrument(){
+  var N = nStrings();
+  D.nStrings  = N;
+  D.stringGap = inst().gap;
+  D.gridW     = D.stringGap * (N - 1);
+  D.colW      = Math.max(62, D.gridW + 26);
+  D.gridLeft  = (D.colW - D.gridW) / 2;
+  D.markers   = inst().marks;
+}
+applyInstrument();
+var S = {
+  slotW:19, gap:12, arrowH:17, stem:1.6, headW:4.6, headH:5.4,
+  countSize:9, countDrop:12, nameSize:9, nameDrop:12
+};
+
+function strumBlockHeight(opt){
+  if(!opt.strum || !opt.strum.length) return 0;
+  return S.gap + S.arrowH + S.countDrop + (opt.strumName ? S.nameDrop : 4);
+}
+
+function drawStrum(surf, slots, name, cx, top, opt){
+  var w = slots.length * S.slotW;
+  var left = cx - w/2;
+  var counts = strumCounts(slots.length);
+  var mid = left + S.slotW/2;
+
+  slots.forEach(function(sym, i){
+    var x = mid + i*S.slotW, y0 = top, y1 = top + S.arrowH;
+    if(sym === "D"){
+      surf.bar(x - S.stem/2, y0, S.stem, S.arrowH - S.headH, 0);
+      surf.tri([x - S.headW, y1 - S.headH, x + S.headW, y1 - S.headH, x, y1]);
+    } else if(sym === "U"){
+      surf.bar(x - S.stem/2, y0 + S.headH, S.stem, S.arrowH - S.headH, 0);
+      surf.tri([x - S.headW, y0 + S.headH, x + S.headW, y0 + S.headH, x, y0]);
+    } else if(sym === "x"){
+      var r = 4.6, cy = y0 + S.arrowH/2;
+      surf.line(x - r, cy - r, x + r, cy + r, 1.9);
+      surf.line(x + r, cy - r, x - r, cy + r, 1.9);
+    }
+    surf.text(counts[i], x, y1 + S.countDrop - 3, S.countSize, "500", "center", 0);
+  });
+
+  if(name){
+    surf.text(name, cx, top + S.arrowH + S.countDrop + S.nameDrop - 3,
+              S.nameSize, "600", "center", 0.5);
+  }
+}
+
+function windowFor(frets){
+  var fretted = frets.filter(function(f){ return f > 0; });
+  if(!fretted.length) return {start:1, nut:true};
+  var maxF = Math.max.apply(null, fretted);
+  if(maxF <= D.nFrets) return {start:1, nut:true};
+  return {start:Math.min.apply(null, fretted), nut:false};
+}
+
+/* Surfaces: same drawing code renders to canvas or to SVG. */
+function canvasSurface(ctx, ink){
+  return {
+    ink: ink,
+    bar: function(x,y,w,h,r){
+      ctx.fillStyle = ink; ctx.beginPath();
+      if(ctx.roundRect) ctx.roundRect(x,y,w,h,r||0); else ctx.rect(x,y,w,h);
+      ctx.fill();
+    },
+    line: function(x1,y1,x2,y2,w){
+      ctx.strokeStyle = ink; ctx.lineWidth = w; ctx.lineCap = "butt";
+      ctx.beginPath(); ctx.moveTo(x1,y1); ctx.lineTo(x2,y2); ctx.stroke();
+    },
+    dot: function(cx,cy,r,hollow,lw){
+      ctx.beginPath(); ctx.arc(cx,cy,r,0,Math.PI*2);
+      if(hollow){ ctx.strokeStyle = ink; ctx.lineWidth = lw; ctx.stroke(); }
+      else { ctx.fillStyle = ink; ctx.fill(); }
+    },
+    text: function(str,x,y,size,weight,align,spacing){
+      ctx.fillStyle = ink;
+      ctx.font = weight + " " + size + "px " + FONT_STACK;
+      ctx.textAlign = align || "center";
+      ctx.textBaseline = "alphabetic";
+      try{ ctx.letterSpacing = spacing ? spacing + "px" : "0px"; }catch(e){}
+      ctx.fillText(str, x, y);
+      try{ ctx.letterSpacing = "0px"; }catch(e){}
+    },
+    tri: function(pts){
+      ctx.fillStyle = ink; ctx.beginPath();
+      ctx.moveTo(pts[0], pts[1]); ctx.lineTo(pts[2], pts[3]); ctx.lineTo(pts[4], pts[5]);
+      ctx.closePath(); ctx.fill();
+    },
+    highlight: function(x,y,w,h,r,color){
+      ctx.fillStyle = color; ctx.beginPath();
+      if(ctx.roundRect) ctx.roundRect(x,y,w,h,r); else ctx.rect(x,y,w,h);
+      ctx.fill();
+    }
+  };
+}
+
+function svgSurface(out, ink){
+  function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+  return {
+    ink: ink,
+    bar: function(x,y,w,h,r){
+      out.push('<rect x="'+f(x)+'" y="'+f(y)+'" width="'+f(w)+'" height="'+f(h)+'" rx="'+f(r||0)+'" fill="'+ink+'"/>');
+    },
+    line: function(x1,y1,x2,y2,w){
+      out.push('<line x1="'+f(x1)+'" y1="'+f(y1)+'" x2="'+f(x2)+'" y2="'+f(y2)+'" stroke="'+ink+'" stroke-width="'+f(w)+'"/>');
+    },
+    dot: function(cx,cy,r,hollow,lw){
+      out.push('<circle cx="'+f(cx)+'" cy="'+f(cy)+'" r="'+f(r)+'" fill="'+(hollow?"none":ink)+'"'+
+               (hollow ? ' stroke="'+ink+'" stroke-width="'+f(lw)+'"' : "")+'/>');
+    },
+    text: function(str,x,y,size,weight,align,spacing){
+      var anchor = align === "start" ? "start" : (align === "end" ? "end" : "middle");
+      out.push('<text x="'+f(x)+'" y="'+f(y)+'" font-family=\'Helvetica Neue, Helvetica, Arial, sans-serif\' '+
+               'font-size="'+f(size)+'" font-weight="'+weight+'" text-anchor="'+anchor+'" fill="'+ink+'"'+
+               (spacing ? ' letter-spacing="'+f(spacing)+'"' : "")+'>'+esc(str)+'</text>');
+    },
+    tri: function(pts){
+      out.push('<polygon points="' + [[pts[0],pts[1]],[pts[2],pts[3]],[pts[4],pts[5]]]
+        .map(function(q){ return f(q[0]) + "," + f(q[1]); }).join(" ") + '" fill="' + ink + '"/>');
+    },
+    highlight: function(){}
+  };
+  function f(n){ return Math.round(n*100)/100; }
+}
+
+function drawDiagram(surf, sh, label, ox, oy, opt){
+  var N = sh.frets.length;
+  var win = windowFor(sh.frets);
+  var gl = ox + D.gridLeft, gt = oy + D.gridTop;
+  var gr = gl + D.gridW, gb = gt + D.gridH;
+
+  surf.text(label, ox + D.colW/2, oy + D.nameBase, D.nameSize, "700", "center", 0);
+
+  // frets
+  for(var r=0; r<=D.nFrets; r++){
+    var y = gt + r * D.fretGap;
+    if(r === 0 && win.nut) surf.bar(gl - D.lineW/2, y - D.nutH + D.lineW/2, D.gridW + D.lineW, D.nutH, 0.4);
+    else surf.line(gl, y, gr, y, D.lineW);
+  }
+  // strings
+  for(var s=0; s<N; s++){
+    var x = gl + s * D.stringGap;
+    surf.line(x, gt, x, gb, D.lineW);
+  }
+  // position marker
+  if(!win.nut){
+    surf.text(win.start + "fr", gr + 4.5, gt + D.fretGap/2 + D.posSize*0.36, D.posSize, "500", "start", 0);
+  }
+  // open and muted strings above the nut
+  if(D.markers || opt.openMarks){
+    for(s=0; s<N; s++){
+      var mx = gl + s*D.stringGap, my = oy + D.openTop;
+      if(sh.frets[s] === 0 && win.nut) surf.dot(mx, my, 2.5, true, 1.05);
+      else if(sh.frets[s] < 0){
+        var q = 2.4;
+        surf.line(mx - q, my - q, mx + q, my + q, 1.25);
+        surf.line(mx + q, my - q, mx - q, my + q, 1.25);
+      }
+    }
+  }
+  // barre
+  var barred = {};
+  if(sh.barre){
+    var b = sh.barre, row = b.fret - win.start;
+    if(row >= 0 && row < D.nFrets){
+      var by = gt + row*D.fretGap + D.fretGap/2;
+      var x1 = gl + b.from*D.stringGap, x2 = gl + b.to*D.stringGap;
+      var h = D.dotR * 1.85, over = D.dotR * 0.72;
+      surf.bar(x1 - over, by - h/2, (x2 - x1) + over*2, h, h/2);
+      for(var i=b.from; i<=b.to; i++) if(sh.frets[i] === b.fret) barred[i] = 1;
+    }
+  }
+  // dots
+  for(s=0; s<N; s++){
+    if(sh.frets[s] <= 0 || barred[s]) continue;
+    var rw = sh.frets[s] - win.start;
+    if(rw < 0 || rw >= D.nFrets) continue;
+    surf.dot(gl + s*D.stringGap, gt + rw*D.fretGap + D.fretGap/2, D.dotR, false, 0);
+  }
+  // finger numbers
+  if(opt.fingerNums){
+    for(s=0; s<N; s++){
+      if(!sh.fingers[s]) continue;
+      surf.text(String(sh.fingers[s]), gl + s*D.stringGap, gb + D.fingerDrop, D.fingerSize, "500", "center", 0);
+    }
+  }
+}
+
+function stripLayout(items, opt){
+  var n = items.length;
+  var cols;
+  if(opt.perRow > 0) cols = Math.min(opt.perRow, n);
+  else cols = Math.ceil(n / Math.max(1, Math.ceil(n / 8)));   // even out the rows
+  cols = Math.max(1, cols);
+  var rows = Math.ceil(n / cols);
+  var headH = opt.heading ? D.headDrop + 6 : 0;
+  var strumH = strumBlockHeight(opt);
+  var w = D.pad*2 + cols * D.colW;
+  var h = D.pad*2 + headH + rows * D.rowH + strumH;
+  var cells = [];
+  for(var i=0;i<n;i++){
+    var r = Math.floor(i/cols), c = i % cols;
+    cells.push({ x: D.pad + c*D.colW, y: D.pad + headH + r*D.rowH, w: D.colW, h: D.rowH });
+  }
+  return {w:w, h:h, cols:cols, rows:rows, headH:headH, strumH:strumH,
+          strumTop: D.pad + headH + rows * D.rowH + S.gap, cells:cells};
+}
+
+function renderCanvas(items, opt, scale, hoverIndex, target){
+  applyInstrument();
+  var lay = stripLayout(items, opt);
+  var cv = target || document.createElement("canvas");
+  cv.width = Math.ceil(lay.w * scale);
+  cv.height = Math.ceil(lay.h * scale);
+  var ctx = cv.getContext("2d");
+  ctx.clearRect(0, 0, cv.width, cv.height);
+  ctx.scale(scale, scale);
+  if(opt.bg){ ctx.fillStyle = opt.bg; ctx.fillRect(0,0,lay.w,lay.h); }
+  var surf = canvasSurface(ctx, opt.ink);
+  if(hoverIndex != null && lay.cells[hoverIndex]){
+    var c = lay.cells[hoverIndex];
+    surf.highlight(c.x+2, c.y+1, c.w-4, c.h-8, 6, opt.hoverColor);
+  }
+  if(opt.heading) surf.text(opt.heading.toUpperCase(), D.pad, D.pad + D.headSize, D.headSize, "700", "start", 1.1);
+  items.forEach(function(it, i){
+    drawDiagram(surf, it.shape, prettyName(it.name), lay.cells[i].x, lay.cells[i].y, opt);
+  });
+  if(lay.strumH) drawStrum(surf, opt.strum, opt.strumName, lay.w/2, lay.strumTop, opt);
+  return {canvas:cv, layout:lay};
+}
+
+function renderSVG(items, opt){
+  applyInstrument();
+  var lay = stripLayout(items, opt);
+  var out = [];
+  out.push('<svg xmlns="http://www.w3.org/2000/svg" width="'+lay.w+'" height="'+lay.h+
+           '" viewBox="0 0 '+lay.w+' '+lay.h+'">');
+  if(opt.bg) out.push('<rect width="'+lay.w+'" height="'+lay.h+'" fill="'+opt.bg+'"/>');
+  var surf = svgSurface(out, opt.ink);
+  if(opt.heading) surf.text(opt.heading.toUpperCase(), D.pad, D.pad + D.headSize, D.headSize, "700", "start", 1.1);
+  items.forEach(function(it, i){
+    drawDiagram(surf, it.shape, prettyName(it.name), lay.cells[i].x, lay.cells[i].y, opt);
+  });
+  if(lay.strumH) drawStrum(surf, opt.strum, opt.strumName, lay.w/2, lay.strumTop, opt);
+  out.push("</svg>");
+  return out.join("");
+}
+
+/* ============================== 4. The app ============================== */
+
+var SEED = [
+  "[Verse]",
+  "| C   | Am  | F      | G7 |",
+  "| C   | Am  | Dm7    | G7 |",
+  "",
+  "[Chorus]",
+  "| F   | Fm  | C      | A7 |",
+  "| Dm7 | G7  | C      | C  |",
+  "",
+  "[Bridge]",
+  "| Bb  | F   | G7sus4 | G7 |"
+].join("\n");
+
+var state = {
+  text: SEED,
+  names: [],
+  pick: {},
+  heading: "",
+  ink: "black",
+  perRow: 0,
+  scale: 3,
+  fingerNums: true,
+  openMarks: false,
+  strumOn: false,
+  strumSlots: "D-DU-UDU",
+  strumName: "Island strum",
+  strumShowName: true
+};
+
+var cache = {};   // chord name -> voicings array
+function voicings(name){
+  if(!cache[name]){
+    var ch = parseChord(name, false);
+    cache[name] = ch ? voicingsFor(ch) : [];
+  }
+  return cache[name];
+}
+
+var el = {};
+["song","chips","chordCount","chipHint","addInput","addBtn","heading","perRow","ink","scale",
+ "tgFingers","tgOpen","paper","strip","caption","copyBtn","pngBtn","svgBtn","resetBtn",
+ "clipBtn","fileBtn","fileInput","dropzone","veil","busy","busyMsg",
+ "strumOn","strumLib","strumSlots","strumText","strumShowName","strumSongs","strumBody",
+ "pdfPanel","pdfName","pdfPage","pdfAnchor","pdfBacking",
+ "pdfPrev","pdfWarn","pdfSave","pdfReadout","pdfSnap","pdfThisPage","pdfPh",
+ "pdfPrevPage","pdfNextPage","pdfPageLbl","themeBtn","themeIcon","pdfAllPages",
+ "instUke","instGuitar","tuningTxt","legendStrings",
+ "subBuild","subStamp","pdfEmpty","subNote",
+ "reflowPanel","reflowText","reflowPages","reflowStrip","reflowHead","reflowBuild","reflowStat","reflowMargin",
+ "reflowTitleIn","reflowArtistIn","reflowTitleLbl","reflowStrum","reflowMin",
+ "sheetPrev","sheetInfo","sheetSave","sheetPages","reflowMode","reflowHint","buildCols",
+ "readNote","readNoteText","readNoteBtn"]
+ .forEach(function(id){ el[id] = document.getElementById(id); });
+
+function savePrefs(){
+  try{
+    localStorage.setItem("ukeStrip", JSON.stringify({
+      text: state.text, heading: state.heading, ink: state.ink, perRow: state.perRow,
+      scale: state.scale, fingerNums: state.fingerNums, openMarks: state.openMarks,
+      strumOn: state.strumOn, strumSlots: state.strumSlots,
+      strumName: state.strumName, strumShowName: state.strumShowName,
+      extra: state.extra || [], removed: state.removed || [], pick: state.pick
+    }));
+  }catch(e){}
+}
+function loadPrefs(){
+  try{
+    var raw = localStorage.getItem("ukeStrip");
+    if(!raw) return;
+    var p = JSON.parse(raw);
+    if(typeof p.text === "string") state.text = p.text;
+    if(typeof p.heading === "string") state.heading = p.heading;
+    if(p.ink === "white" || p.ink === "black") state.ink = p.ink;
+    if(typeof p.perRow === "number") state.perRow = p.perRow;
+    if(typeof p.scale === "number") state.scale = p.scale;
+    if(typeof p.fingerNums === "boolean") state.fingerNums = p.fingerNums;
+    if(typeof p.openMarks === "boolean") state.openMarks = p.openMarks;
+    if(typeof p.strumOn === "boolean") state.strumOn = p.strumOn;
+    if(typeof p.strumSlots === "string") state.strumSlots = p.strumSlots;
+    if(typeof p.strumName === "string") state.strumName = p.strumName;
+    if(typeof p.strumShowName === "boolean") state.strumShowName = p.strumShowName;
+    if(Array.isArray(p.extra)) state.extra = p.extra;
+    if(Array.isArray(p.removed)) state.removed = p.removed;
+    if(p.pick && typeof p.pick === "object") state.pick = p.pick;
+  }catch(e){}
+}
+
+state.extra = [];
+state.removed = [];
+loadPrefs();
+
+function currentNames(){
+  var found = extractChords(state.text);
+  var removed = {};
+  (state.removed || []).forEach(function(n){ removed[n] = 1; });
+  var list = found.filter(function(n){ return !removed[n]; });
+  var have = {}; list.forEach(function(n){ have[n] = 1; });
+  (state.extra || []).forEach(function(n){ if(!have[n]){ have[n] = 1; list.push(n); } });
+  return list;
+}
+
+function items(){
+  return state.names.map(function(name){
+    var vs = voicings(name);
+    if(!vs.length) return null;
+    var i = state.pick[name] || 0;
+    return { name: name, shape: vs[i % vs.length], count: vs.length, index: i % vs.length };
+  }).filter(Boolean);
+}
+
+function drawOpts(forExport){
+  var black = state.ink === "black";
+  return {
+    ink: black ? "#111111" : "#FFFFFF",
+    bg: null,
+    heading: state.heading.trim(),
+    perRow: state.perRow,
+    fingerNums: state.fingerNums,
+    openMarks: state.openMarks,
+    strum: state.strumOn ? parseStrum(state.strumSlots) : [],
+    strumName: (state.strumOn && state.strumShowName) ? state.strumName : "",
+    hoverColor: black ? "rgba(138,92,21,.10)" : "rgba(215,162,74,.16)"
+  };
+}
+
+var hover = null, lastLayout = null, lastList = [], stripCanvas = null, emptyMsg = null;
+var lastSig = "", pdfPrevTimer = null;
+
+function signature(list){
+  return JSON.stringify([
+    list.map(function(it){ return it.name + ":" + it.index; }),
+    state.ink, state.fingerNums, state.openMarks, state.perRow, state.heading,
+    state.strumOn, state.strumSlots, state.strumName, state.strumShowName
+  ]);
+}
+function schedulePdfPreview(){
+  if(!pdfSource) return;
+  clearTimeout(pdfPrevTimer);
+  pdfPrevTimer = setTimeout(drawPdfPreview, 120);
+}
+
+function render(){
+  state.names = currentNames();
+  renderChips();
+  var list = items();
+  lastList = list;
+  var opt = drawOpts(false);
+  el.paper.style.background = state.ink === "black" ? "#FFFFFF" : "#1B1B1B";
+
+  if(!list.length){
+    el.paper.classList.add("empty");
+    if(stripCanvas) stripCanvas.hidden = true;
+    if(!emptyMsg){
+      emptyMsg = document.createElement("span");
+      el.paper.appendChild(emptyMsg);
+    }
+    emptyMsg.hidden = false;
+    emptyMsg.style.color = state.ink === "black" ? "#8A8A8A" : "#9A9A9A";
+    emptyMsg.textContent = "No chords yet — paste a song or add one below.";
+    el.caption.textContent = "";
+    el.copyBtn.disabled = el.pngBtn.disabled = el.svgBtn.disabled = true;
+    lastLayout = null;
+    return;
+  }
+  el.copyBtn.disabled = el.pngBtn.disabled = el.svgBtn.disabled = false;
+  el.paper.classList.remove("empty");
+  if(emptyMsg) emptyMsg.hidden = true;
+
+  if(!stripCanvas || !stripCanvas.isConnected){
+    stripCanvas = document.createElement("canvas");
+    stripCanvas.id = "strip";
+    stripCanvas.title = "Click a chord to try the next fingering";
+    el.paper.insertBefore(stripCanvas, el.paper.firstChild);
+    attachCanvasEvents(stripCanvas);
+  }
+  stripCanvas.hidden = false;
+
+  var dpr = Math.min(window.devicePixelRatio || 1, 2) * 2;
+  var res = renderCanvas(list, opt, dpr, hover, stripCanvas);
+  stripCanvas.style.width = res.layout.w + "px";
+  stripCanvas.style.maxWidth = "100%";
+  el.strip = stripCanvas;
+  lastLayout = res.layout;
+
+  el.caption.innerHTML = list.map(function(it){
+    var f = it.shape.frets.map(function(n){ return n < 0 ? "x" : n; });
+    var txt = it.shape.frets.some(function(n){ return n >= 10; }) ? f.join("-") : f.join("");
+    return "<b>" + escapeHTML(prettyName(it.name)) + "</b> " + txt +
+           (it.count > 1 ? " <span style='opacity:.6'>(" + (it.index+1) + "/" + it.count + ")</span>" : "");
+  }).join(" · ");
+
+  var sig = signature(list);
+  if(sig !== lastSig){
+    lastSig = sig;
+    schedulePdfPreview();
+    if(typeof scheduleSheetBuild === "function") scheduleSheetBuild();
+  }
+  if(typeof refreshReflow === "function") refreshReflow(false);
+  savePrefs();
+}
+
+function escapeHTML(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+
+function attachCanvasEvents(cv){
+  function hit(ev){
+    if(!lastLayout) return null;
+    var r = cv.getBoundingClientRect();
+    if(!r.width || !r.height) return null;
+    var x = (ev.clientX - r.left) * (lastLayout.w / r.width);
+    var y = (ev.clientY - r.top) * (lastLayout.h / r.height);
+    for(var i=0;i<lastLayout.cells.length;i++){
+      var c = lastLayout.cells[i];
+      if(x >= c.x && x <= c.x+c.w && y >= c.y && y <= c.y+c.h) return i;
+    }
+    return null;
+  }
+  cv.addEventListener("mousemove", function(ev){
+    var i = hit(ev);
+    if(i !== hover){ hover = i; render(); }
+  });
+  cv.addEventListener("mouseleave", function(){
+    if(hover !== null){ hover = null; render(); }
+  });
+  cv.addEventListener("click", function(ev){
+    var i = hit(ev);
+    if(i == null || !lastList[i]) return;
+    var name = lastList[i].name, n = voicings(name).length;
+    if(n < 2){ toast("Only one playable shape for " + prettyName(name)); return; }
+    state.pick[name] = ((state.pick[name] || 0) + 1) % n;
+    render();
+  });
+}
+
+function renderChips(){
+  el.chips.innerHTML = "";
+  state.names.forEach(function(name){
+    var li = document.createElement("li");
+    var ok = voicings(name).length > 0;
+    li.className = "chip" + (ok ? "" : " bad");
+    var span = document.createElement("span");
+    span.textContent = prettyName(name);
+    li.appendChild(span);
+    var x = document.createElement("button");
+    x.className = "x"; x.type = "button";
+    x.setAttribute("aria-label", "Remove " + name);
+    x.textContent = "×";
+    x.addEventListener("click", function(){
+      state.removed = (state.removed || []).concat([name]);
+      state.extra = (state.extra || []).filter(function(n){ return n !== name; });
+      render();
+    });
+    li.appendChild(x);
+    el.chips.appendChild(li);
+  });
+  el.chordCount.textContent = state.names.length ? "— " + state.names.length : "";
+  el.chipHint.textContent = state.names.length
+    ? "Remove anything the scanner picked up by mistake, or add what it missed."
+    : readNoteKind === "outlined"
+      ? "This PDF’s chord names are drawings, not text — there is nothing to read. Type them above: spaces or commas, e.g. G C D7 Em."
+    : readNoteKind === "scan"
+      ? "This PDF has no text layer at all. Type the chords above: spaces or commas, e.g. G C D7 Em."
+    : "Nothing recognised yet. Type chords below, or paste a sheet with a chord line.";
+}
+
+/* ----------------------------- interactions ----------------------------- */
+
+var toastTimer = null;
+/* A PDF can defeat the reader in three different ways, and "no chords found"
+   tells you nothing about which. This says which, and stays on screen. */
+var READ_NOTES = {
+  outlined:
+    "<b>The chord names in this PDF are drawings, not text.</b> Whoever printed it " +
+    "converted the lettering to outlines, so the lyrics came through but the chords " +
+    "have nothing readable behind them. Read them off the sheet and type them in — " +
+    "spaces or commas, e.g. <code>G C D7 Em</code>. Everything else still works.",
+  scan:
+    "<b>This PDF has no text layer</b> — it is a scan or an image, so there is nothing " +
+    "to read. Type the chord names in — spaces or commas, e.g. <code>G C D7 Em</code> " +
+    "— and you can still build and stamp a strip.",
+  nochords:
+    "<b>The words came through, but no chord names turned up.</b> If the sheet does have " +
+    "chords, type them in — spaces or commas, e.g. <code>G C D7 Em</code>."
+};
+var readNoteKind = "";
+function setReadNote(kind){
+  readNoteKind = kind || "";
+  if(!el.readNote) return;
+  if(!readNoteKind){ el.readNote.hidden = true; return; }
+  el.readNoteText.innerHTML = READ_NOTES[readNoteKind] || "";
+  el.readNote.hidden = false;
+}
+
+function toast(msg, bad){
+  var old = document.querySelector(".toast");
+  if(old) old.remove();
+  var t = document.createElement("div");
+  t.className = "toast" + (bad ? " bad" : "");
+  t.setAttribute("role","status");
+  t.textContent = msg;
+  document.body.appendChild(t);
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(function(){ t.remove(); }, 2800);
+}
+
+el.song.value = state.text;
+el.heading.value = state.heading;
+el.perRow.value = String(state.perRow);
+el.ink.value = state.ink;
+el.scale.value = String(state.scale);
+el.tgFingers.checked = state.fingerNums;
+el.tgOpen.checked = state.openMarks;
+
+var debounce = null;
+el.song.addEventListener("input", function(){
+  state.text = el.song.value;
+  state.removed = [];
+  if(readNoteKind) setReadNote("");
+  clearTimeout(debounce);
+  debounce = setTimeout(render, 180);
+});
+el.heading.addEventListener("input", function(){ state.heading = el.heading.value; render(); });
+el.perRow.addEventListener("change", function(){ state.perRow = Number(el.perRow.value); render(); });
+el.ink.addEventListener("change", function(){ state.ink = el.ink.value; render(); });
+el.scale.addEventListener("change", function(){ state.scale = Number(el.scale.value); savePrefs(); });
+el.tgFingers.addEventListener("change", function(){ state.fingerNums = el.tgFingers.checked; render(); });
+el.tgOpen.addEventListener("change", function(){ state.openMarks = el.tgOpen.checked; render(); });
+
+function addChord(){
+  var raw = el.addInput.value.trim();
+  if(!raw) return;
+  var parts = raw.split(/[\s,]+/).filter(Boolean);
+  var added = 0, bad = [];
+  parts.forEach(function(p){
+    var ch = parseChord(p, false);
+    if(!ch){ bad.push(p); return; }
+    state.removed = (state.removed || []).filter(function(n){ return n !== ch.name; });
+    if(state.names.indexOf(ch.name) < 0 && (state.extra || []).indexOf(ch.name) < 0){
+      state.extra = (state.extra || []).concat([ch.name]);
+      added++;
+    }
+  });
+  el.addInput.value = "";
+  render();
+  if(bad.length) toast("Didn't recognise " + bad.join(", "), true);
+  else if(added) toast("Added " + added + (added > 1 ? " chords" : " chord"));
+}
+el.addBtn.addEventListener("click", addChord);
+if(el.readNoteBtn) el.readNoteBtn.addEventListener("click", function(){
+  setTab("chords");
+  el.addInput.focus();
+});
+el.addInput.addEventListener("keydown", function(ev){ if(ev.key === "Enter"){ ev.preventDefault(); addChord(); } });
+
+el.resetBtn.addEventListener("click", function(){
+  state.pick = {};
+  render();
+  toast("Back to standard shapes");
+});
+
+function exportCanvas(){
+  var opt = drawOpts(true);
+  return renderCanvas(items(), opt, state.scale, null).canvas;
+}
+
+el.copyBtn.addEventListener("click", function(){
+  var cv = exportCanvas();
+  if(!window.ClipboardItem || !navigator.clipboard || !navigator.clipboard.write){
+    toast("This browser can't copy images — use Save PNG", true);
+    return;
+  }
+  try{
+    var item = new ClipboardItem({ "image/png": new Promise(function(res){
+      cv.toBlob(function(b){ res(b); }, "image/png");
+    })});
+    navigator.clipboard.write([item]).then(function(){
+      toast("Copied — paste it straight into your PDF");
+    }, function(){
+      toast("Copy was blocked — use Save PNG instead", true);
+    });
+  }catch(e){
+    toast("Copy failed — use Save PNG instead", true);
+  }
+});
+
+var downloads = null;
+if(window.claude && typeof window.claude.use === "function"){
+  window.claude.use("downloads").then(function(d){
+    downloads = d;
+    if(d){ el.pngBtn.hidden = false; el.svgBtn.hidden = false; }
+    el.pdfSave.disabled = !d;
+    el.pdfSave.title = d ? "" : "Saving files isn't available in this view";
+  }, function(){});
+} else {
+  // Opened as a plain file in a browser: save through an ordinary download link.
+  downloads = {
+    save: function(req){
+      return new Promise(function(resolve){
+        var ext = (req.filename.split(".").pop() || "").toLowerCase();
+        var type = {png:"image/png", svg:"image/svg+xml", pdf:"application/pdf"}[ext] || "application/octet-stream";
+        var blob = req.data instanceof Blob ? req.data : new Blob([req.data], {type:type});
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement("a");
+        a.href = url; a.download = req.filename;
+        document.body.appendChild(a); a.click(); a.remove();
+        setTimeout(function(){ URL.revokeObjectURL(url); }, 5000);
+        resolve({status:"saved"});
+      });
+    }
+  };
+  el.pngBtn.hidden = false; el.svgBtn.hidden = false;
+}
+
+function fileStem(){
+  var h = state.heading.trim().replace(/[^\w \-]/g,"").trim().replace(/\s+/g,"-");
+  return (h || (INST + "-chords")).toLowerCase();
+}
+function handleSaveError(e){
+  var code = e && e.code;
+  if(code === "declined") return;
+  toast(code === "too_large" ? "File too large — try a smaller export scale"
+                             : "Couldn't save that file", true);
+}
+
+el.pngBtn.addEventListener("click", function(){
+  if(!downloads) return;
+  exportCanvas().toBlob(function(blob){
+    downloads.save({ filename: fileStem() + ".png", data: blob })
+      .then(function(){ toast("PNG saved"); }, handleSaveError);
+  }, "image/png");
+});
+
+el.svgBtn.addEventListener("click", function(){
+  if(!downloads) return;
+  var svg = renderSVG(items(), drawOpts(true));
+  downloads.save({ filename: fileStem() + ".svg", data: svg })
+    .then(function(){ toast("SVG saved — vector, for sharp printing"); }, handleSaveError);
+});
+
+/* ===================== 5. Bringing text in: PDF, files, clipboard ===================== */
+
+var PDFJS_MAIN = ["https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js",
+                  "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"];
+var PDFJS_WORK = ["https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js",
+                  "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js"];
+var PDFLIB_SRC = ["https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js",
+                  "https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"];
+
+var scriptJobs = {};
+function loadScript(urls){
+  var key = urls[0];
+  if(scriptJobs[key]) return scriptJobs[key];
+  scriptJobs[key] = new Promise(function(resolve, reject){
+    var i = 0;
+    (function attempt(){
+      if(i >= urls.length){ reject(new Error("could not load " + key)); return; }
+      var s = document.createElement("script");
+      s.src = urls[i++];
+      s.async = true;
+      s.onload = function(){ resolve(); };
+      s.onerror = function(){ s.remove(); attempt(); };
+      document.head.appendChild(s);
+    })();
+  });
+  return scriptJobs[key];
+}
+
+var pdfjsJob = null;
+function ensurePdfJs(){
+  if(pdfjsJob) return pdfjsJob;
+  // The worker script is loaded on the main thread on purpose: a cross-origin
+  // Worker cannot start here, and pdf.js will use globalThis.pdfjsWorker instead.
+  pdfjsJob = loadScript(PDFJS_MAIN)
+    .then(function(){ return loadScript(PDFJS_WORK); })
+    .then(function(){
+      if(!window.pdfjsLib) throw new Error("pdf.js did not load");
+      try{ window.pdfjsLib.GlobalWorkerOptions.workerSrc = PDFJS_WORK[0]; }catch(e){}
+      return window.pdfjsLib;
+    });
+  return pdfjsJob;
+}
+var pdflibJob = null;
+function ensurePdfLib(){
+  if(pdflibJob) return pdflibJob;
+  pdflibJob = loadScript(PDFLIB_SRC).then(function(){
+    if(!window.PDFLib) throw new Error("pdf-lib did not load");
+    return window.PDFLib;
+  });
+  return pdflibJob;
+}
+
+/* Rebuild lines from positioned text runs so chord lines stay on their own line. */
+function pageLines(list){
+  var rows = [];
+  list.forEach(function(it){
+    if(!it.str || !it.transform) return;
+    var x = it.transform[4], y = it.transform[5];
+    var size = Math.abs(it.transform[3]) || it.height || 10;
+    var tol = Math.max(1.5, size * 0.3);
+    var row = null;
+    for(var i=0;i<rows.length;i++){ if(Math.abs(rows[i].y - y) <= tol){ row = rows[i]; break; } }
+    if(!row){ row = {y:y, runs:[]}; rows.push(row); }
+    row.runs.push({x:x, w:it.width || 0, s:it.str, f:it.fontName || ""});
+  });
+  rows.sort(function(a,b){ return b.y - a.y; });
+
+  // Some sheets draw each glyph twice, a hair apart, to fake bold. Keep one.
+  rows.forEach(function(r){
+    var kept = [];
+    r.runs.forEach(function(run){
+      for(var i=0;i<kept.length;i++){
+        var k = kept[i];
+        if(k.s === run.s && Math.abs(k.x - run.x) <= Math.max(0.8, (run.w || 4) * 0.2)) return;
+      }
+      kept.push(run);
+    });
+    r.runs = kept;
+  });
+
+  function join(runs){
+    runs.sort(function(a,b){ return a.x - b.x; });
+    // Work out this line's own character width, so columns keep their alignment
+    // instead of being stretched by a guessed space size.
+    var wSum = 0, cSum = 0;
+    runs.forEach(function(r){ if(r.w > 0 && r.s.length){ wSum += r.w; cSum += r.s.length; } });
+    var cw = cSum ? wSum / cSum : 3.4;
+    if(!(cw > 1.2) || cw > 14) cw = 3.4;
+
+    var out = "", endX = null;
+    runs.forEach(function(run){
+      if(endX !== null && run.x - endX > cw * 0.4){
+        var n = Math.max(1, Math.round((run.x - endX) / cw));
+        out += new Array(Math.min(n, 80) + 1).join(" ");
+      } else if(endX !== null && out.length && !/\s$/.test(out) && run.x - endX > 0.6){
+        out += " ";
+      }
+      out += run.s;
+      endX = run.x + run.w;
+    });
+    return out.replace(/\s+$/,"");
+  }
+
+  var out = [];     // [{text, runs}]
+  rows.forEach(function(r){
+    // Chord sheets often set chords in their own font. If a row mixes fonts,
+    // give each font its own line, so chords sharing a baseline with lyrics
+    // still come out as a clean chord line.
+    var fonts = {};
+    r.runs.forEach(function(run){ (fonts[run.f] = fonts[run.f] || []).push(run); });
+    var keys = Object.keys(fonts);
+    var split = false;
+    if(keys.length > 1){
+      var chordy = 0, wordy = 0;
+      keys.forEach(function(k){
+        var toks = join(fonts[k]).split(/\s+/).filter(Boolean);
+        if(!toks.length) return;
+        var hit = toks.filter(function(t){ return parseChord(t, true); }).length / toks.length;
+        if(hit >= 0.6) chordy++; else if(hit < 0.35) wordy++;
+      });
+      split = chordy > 0 && wordy > 0;   // a chord row sharing a baseline with lyrics
+    }
+    if(split){
+      keys.forEach(function(k){
+        var t = join(fonts[k]);
+        if(t.trim()) out.push({text:t, runs:fonts[k], cw:charWidth(fonts[k]), y:r.y});
+      });
+    } else {
+      out.push({text:join(r.runs), runs:r.runs, cw:charWidth(r.runs), y:r.y});
+    }
+  });
+  return out;
+}
+
+function charWidth(runs){
+  var wSum = 0, cSum = 0;
+  runs.forEach(function(r){ if(r.w > 0 && r.s.length){ wSum += r.w; cSum += r.s.length; } });
+  var cw = cSum ? wSum / cSum : 3.4;
+  return (cw > 1.2 && cw < 14) ? cw : 3.4;
+}
+
+var pdfSource = null;   // {bytes, name, doc, numPages, rotated}
+
+function pdfRead(buffer){
+  return ensurePdfJs().then(function(lib){
+    return lib.getDocument({
+      data: buffer, isEvalSupported:false, disableFontFace:true, useWorkerFetch:false
+    }).promise;
+  }).then(function(doc){
+    var pages = [], n = Math.min(doc.numPages, 200), chain = Promise.resolve();
+    for(var p=1; p<=n; p++){
+      (function(num){
+        chain = chain.then(function(){
+          return doc.getPage(num).then(function(page){
+            return page.getTextContent().then(function(tc){ pages[num-1] = pageLines(tc.items); });
+          });
+        });
+      })(p);
+    }
+    return chain.then(function(){
+      var text = pages.map(function(ls){
+        return ls.map(function(l){ return l.text; }).join("\n");
+      }).join("\n\n");
+      return {doc:doc, text:text, pages:pages, numPages:doc.numPages};
+    });
+  });
+}
+
+/* Text converted to outlines leaves a flood of path segments and almost no
+   characters. Compare the two and the shape of the failure is obvious. Only
+   worth asking when nothing was found, so it runs on demand, first pages only. */
+function probeOutlines(doc, pageCount){
+  var n = Math.min(pageCount || 1, 3), chain = Promise.resolve(), segs = 0, chars = 0;
+  for(var p = 1; p <= n; p++){
+    (function(num){
+      chain = chain.then(function(){
+        return doc.getPage(num).then(function(page){
+          return page.getOperatorList().then(function(ol){
+            var OPS = window.pdfjsLib && window.pdfjsLib.OPS;
+            if(!OPS) return;
+            for(var i = 0; i < ol.fnArray.length; i++){
+              if(ol.fnArray[i] !== OPS.constructPath) continue;
+              var a = ol.argsArray[i];
+              if(!a) continue;
+              if(a[0] && a[0].length) segs += a[0].length;
+              else if(a[1] && a[1].length) segs += a[1].length;
+            }
+          }).then(function(){
+            return page.getTextContent().then(function(tc){
+              tc.items.forEach(function(it){ chars += (it.str || "").length; });
+            });
+          });
+        });
+      });
+    })(p);
+  }
+  return chain.then(function(){
+    return {segs:segs, chars:chars, outlined: segs > 1200 && segs > chars * 3};
+  }, function(){ return {segs:0, chars:0, outlined:false}; });
+}
+
+function showBusy(msg){ el.busyMsg.textContent = msg; el.busy.hidden = false; }
+function hideBusy(){ el.busy.hidden = true; }
+
+/* A new song starts fresh: the chord picks, strumming, heading and PDF
+   placement all belonged to the last one. Preferences — instrument, theme,
+   ink, page settings — are yours and stay put. */
+function resetForNewSong(){
+  state.pick = {};
+  state.extra = [];
+  state.removed = [];
+  state.heading = "";
+  state.strumOn = false;
+  state.strumSlots = "D-DU-UDU";
+  state.strumName = "Island strum";
+  if(el.heading) el.heading.value = "";
+  if(el.strumOn) el.strumOn.checked = false;
+  pdfPlaces = {};
+  if(el.pdfAllPages) el.pdfAllPages.checked = false;
+  if(el.pdfBacking) el.pdfBacking.checked = false;
+  namesDirty = false;
+  reflowDirty = false;
+  reflowSrc = "";
+  hover = null;
+  if(typeof clearSheetPreview === "function") clearSheetPreview();
+  if(typeof renderStrumPanel === "function") renderStrumPanel();
+  setReadNote("");
+}
+
+function setSongText(text){
+  resetForNewSong();
+  state.text = text;
+  el.song.value = text;
+  render();
+}
+
+function isPdfFile(f){ return f && (f.type === "application/pdf" || /\.pdf$/i.test(f.name || "")); }
+function isTextFile(f){
+  return f && (/^text\//.test(f.type || "") || /\.(txt|text|md|markdown|cho|crd|pro|chopro|chord|tab)$/i.test(f.name || ""));
+}
+
+function handleFile(file){
+  if(!file) return Promise.resolve();
+  if(isPdfFile(file)){
+    showBusy("Reading PDF…");
+    return file.arrayBuffer().then(function(buf){
+      pdfSource = {bytes: new Uint8Array(buf.slice(0)), name: file.name || "song.pdf"};
+      return pdfRead(buf.slice(0));
+    }).then(function(res){
+      pdfSource.doc = res.doc;
+      pdfSource.numPages = res.numPages;
+      pdfSource.pages = res.pages;
+      setSongText(res.text);
+      setupPdfPanel();
+      refreshReflow();
+      chooseSubForSource();
+      var n = state.names.length;
+      if(n){
+        setReadNote("");
+        toast("Read " + n + " chord" + (n > 1 ? "s" : "") + " from " + pdfSource.name);
+        return;
+      }
+      if(!res.text.trim()){
+        setReadNote("scan");
+        toast("That PDF has no text layer — it looks like a scan", true);
+        return;
+      }
+      return probeOutlines(res.doc, res.numPages).then(function(v){
+        setReadNote(v.outlined ? "outlined" : "nochords");
+        render();
+        toast(v.outlined
+          ? "The chords in this PDF are drawings, not text — see the note below"
+          : "Found the words but no chord names — add the chords below", true);
+      });
+    }).catch(function(e){
+      console.error(e);
+      pdfSource = null; el.pdfPanel.hidden = true; el.reflowPanel.hidden = true;
+      toast("Couldn't read that PDF", true);
+    }).then(hideBusy);
+  }
+  if(isTextFile(file) || !file.type){
+    showBusy("Reading file…");
+    return file.text().then(function(t){
+      setSongText(t);
+      pdfSource = null; el.pdfPanel.hidden = true;
+      toast("Loaded " + (file.name || "file"));
+    }).catch(function(){ toast("Couldn't read that file", true); }).then(hideBusy);
+  }
+  toast("That's not a PDF or a text file", true);
+  return Promise.resolve();
+}
+
+/* --- click into the box: the example goes --- */
+function clearExample(){
+  if(state.text === SEED){
+    state.text = "";
+    el.song.value = "";
+    state.removed = [];
+    state.extra = [];
+    render();
+  }
+}
+el.song.addEventListener("focus", clearExample);
+el.song.addEventListener("pointerdown", clearExample);
+
+/* --- drag and drop --- */
+["dragenter","dragover"].forEach(function(ev){
+  el.dropzone.addEventListener(ev, function(e){
+    if(e.dataTransfer && Array.prototype.indexOf.call(e.dataTransfer.types || [], "Files") < 0) return;
+    e.preventDefault();
+    e.dataTransfer.dropEffect = "copy";
+    el.dropzone.classList.add("over");
+    el.veil.hidden = false;
+  });
+});
+["dragleave","dragend"].forEach(function(ev){
+  el.dropzone.addEventListener(ev, function(e){
+    if(ev === "dragleave" && el.dropzone.contains(e.relatedTarget)) return;
+    el.dropzone.classList.remove("over");
+    el.veil.hidden = true;
+  });
+});
+el.dropzone.addEventListener("drop", function(e){
+  e.preventDefault();
+  el.dropzone.classList.remove("over");
+  el.veil.hidden = true;
+  var f = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0];
+  if(f) handleFile(f);
+});
+// a file dropped anywhere else must not navigate the page away
+window.addEventListener("dragover", function(e){
+  if(e.dataTransfer && Array.prototype.indexOf.call(e.dataTransfer.types || [], "Files") >= 0) e.preventDefault();
+});
+window.addEventListener("drop", function(e){
+  if(e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files.length) e.preventDefault();
+});
+
+/* --- paste a PDF straight into the box --- */
+el.song.addEventListener("paste", function(e){
+  var files = e.clipboardData && e.clipboardData.files;
+  if(files && files.length){
+    for(var i=0;i<files.length;i++){
+      if(isPdfFile(files[i]) || isTextFile(files[i])){ e.preventDefault(); handleFile(files[i]); return; }
+    }
+  }
+  // Pasting a whole song, rather than patching a word, starts a clean slate.
+  var txt = "";
+  try{ txt = (e.clipboardData && e.clipboardData.getData("text")) || ""; }catch(_){}
+  if(/\n/.test(txt) || txt.length >= 40){
+    setTimeout(function(){
+      resetForNewSong();
+      state.text = el.song.value;
+      render();
+    }, 0);
+  }
+});
+
+/* --- open a file --- */
+el.fileBtn.addEventListener("click", function(){ el.fileInput.click(); });
+el.fileInput.addEventListener("change", function(){
+  var f = el.fileInput.files && el.fileInput.files[0];
+  el.fileInput.value = "";
+  if(f) handleFile(f);
+});
+
+/* --- paste from clipboard button --- */
+el.clipBtn.addEventListener("click", function(){
+  var blocked = function(){
+    toast("The browser blocked clipboard access — click the box and press ⌘V", true);
+  };
+  if(!navigator.clipboard){ blocked(); return; }
+  var readItems = navigator.clipboard.read ? navigator.clipboard.read() : Promise.reject();
+  readItems.then(function(list){
+    for(var i=0;i<list.length;i++){
+      if(list[i].types.indexOf("application/pdf") >= 0){
+        return list[i].getType("application/pdf").then(function(b){
+          return handleFile(new File([b], "clipboard.pdf", {type:"application/pdf"}));
+        });
+      }
+    }
+    for(var j=0;j<list.length;j++){
+      if(list[j].types.indexOf("text/plain") >= 0){
+        return list[j].getType("text/plain").then(function(b){ return b.text(); }).then(function(t){
+          if(!t.trim()){ toast("Clipboard is empty", true); return; }
+          setSongText(t); pdfSource = null; el.pdfPanel.hidden = true;
+          toast("Pasted from clipboard");
+        });
+      }
+    }
+    toast("Nothing on the clipboard this can read", true);
+  }).catch(function(){
+    if(!navigator.clipboard.readText){ blocked(); return; }
+    navigator.clipboard.readText().then(function(t){
+      if(!t || !t.trim()){ toast("Clipboard is empty", true); return; }
+      setSongText(t); pdfSource = null; el.pdfPanel.hidden = true;
+      toast("Pasted from clipboard");
+    }).catch(blocked);
+  });
+});
+
+/* ======================= 6. Stamping the strip onto the PDF ======================= */
+
+var MM = 2.834645669;
+
+function setupPdfPanel(){
+  if(!pdfSource || !pdfSource.doc){ el.pdfPanel.hidden = true; return; }
+  el.pdfPanel.hidden = false;
+  el.pdfName.textContent = "— " + pdfSource.name;
+  el.pdfPage.value = "1";
+  updatePager();
+  el.pdfSave.disabled = !downloads;
+  el.pdfSave.title = downloads ? "" : "Saving files isn't available in this view";
+  pageCanvas = null; pageMeta = null; previewCv = null;
+  pdfPlaces = {};
+  el.pdfAllPages.checked = false;
+  el.pdfThisPage.checked = true;
+  pdfPlaceholder("Rendering page…");
+  drawPdfPreview();
+}
+
+/* The strip's spot on the page, kept as fractions so it survives page changes. */
+var pdfPlaces = {};          // page number -> {xf, yf, wPct}; each page placed on its own
+var DEFAULT_WIDTH_PCT = 50;
+var MARGIN_MM = 12;
+var HANDLE = 26;             // resize grip in preview pixels, sized for a fingertip
+function clamp(v, lo, hi){ return v < lo ? lo : (v > hi ? hi : v); }
+
+function curPage(){
+  var n = (pdfSource && pdfSource.numPages) || 1;
+  return clamp(Number(el.pdfPage.value) || 1, 1, n);
+}
+function placeEntry(pageNo){
+  var n = pageNo || curPage();
+  var k = String(n);
+  if(!pdfPlaces[k]) pdfPlaces[k] = {xf:null, yf:null, wPct:DEFAULT_WIDTH_PCT, on: n === 1};
+  return pdfPlaces[k];
+}
+function pageHasStrip(pageNo){ return !!placeEntry(pageNo).on; }
+function anchorFractions(pageW, pageH, w, h){
+  var m = MARGIN_MM * MM;
+  var a = el.pdfAnchor.value;
+  var x = a.charAt(1) === "l" ? m : (a.charAt(1) === "r" ? pageW - m - w : (pageW - w) / 2);
+  var yTop = a.charAt(0) === "t" ? m : pageH - m - h;
+  return {xf: x / pageW, yf: yTop / pageH};
+}
+function snapToAnchor(){
+  var e = placeEntry();
+  e.xf = null; e.yf = null;
+  paintPreview();
+}
+
+/* Returns both conventions: yTop for canvas, y for pdf-lib. */
+function placement(pageW, pageH, aspect, pageNo){
+  var e = placeEntry(pageNo);
+  var w = pageW * (e.wPct / 100);
+  var h = w / aspect;
+  if(e.xf == null || e.yf == null){
+    var a = anchorFractions(pageW, pageH, w, h);
+    e.xf = a.xf; e.yf = a.yf;
+  }
+  var x = clamp(e.xf * pageW, 0, Math.max(0, pageW - w));
+  var yTop = clamp(e.yf * pageH, 0, Math.max(0, pageH - h));
+  return {x:x, yTop:yTop, y: pageH - yTop - h, w:w, h:h};
+}
+
+/* ---- cached renders, so dragging repaints instantly ---- */
+var pageCanvas = null, pageMeta = null, previewCv = null;
+var stripCv = null, stripSig = "";
+var accentColor = "#8A5C15";
+
+function stripForPdf(){
+  var list = items();
+  if(!list.length) return null;
+  var sig = signature(list);
+  if(sig !== stripSig || !stripCv){
+    stripCv = renderCanvas(list, drawOpts(true), 3, null).canvas;
+    stripSig = sig;
+  }
+  return stripCv;
+}
+
+var pageJob = Promise.resolve();
+function ensurePageRender(pageNo){
+  if(pageMeta && pageMeta.pageNo === pageNo) return Promise.resolve();
+  pageJob = pageJob.then(function(){
+    if(pageMeta && pageMeta.pageNo === pageNo) return;
+    if(!pdfSource || !pdfSource.doc) return;
+    return pdfSource.doc.getPage(pageNo).then(function(page){
+      var base = page.getViewport({scale:1});
+      var cssW = 440;
+      var s = (cssW / base.width) * 2;
+      var vp = page.getViewport({scale:s});
+      var cv = document.createElement("canvas");
+      cv.width = Math.ceil(vp.width); cv.height = Math.ceil(vp.height);
+      var ctx = cv.getContext("2d");
+      ctx.fillStyle = "#FFFFFF"; ctx.fillRect(0, 0, cv.width, cv.height);
+      return page.render({canvasContext:ctx, viewport:vp}).promise.then(function(){
+        pageCanvas = cv;
+        pageMeta = {pageNo:pageNo, baseW:base.width, baseH:base.height, s:s, cssW:cssW, rotate:page.rotate % 360};
+      });
+    });
+  });
+  return pageJob;
+}
+
+function pdfPlaceholder(txt){
+  if(previewCv && previewCv.parentNode){ previewCv.remove(); previewCv = null; }
+  var ph = el.pdfPrev.querySelector(".ph");
+  if(!ph){
+    ph = document.createElement("span");
+    ph.className = "ph";
+    el.pdfPrev.appendChild(ph);
+  }
+  ph.textContent = txt;
+}
+
+function ensurePreviewCanvas(){
+  if(previewCv && previewCv.isConnected) return;
+  var ph = el.pdfPrev.querySelector(".ph");
+  if(ph) ph.remove();
+  previewCv = document.createElement("canvas");
+  previewCv.tabIndex = 0;
+  previewCv.setAttribute("aria-label", "PDF page preview — drag the chord strip to place it");
+  el.pdfPrev.appendChild(previewCv);     // the page arrows live in here too, leave them be
+  attachPlacementEvents(previewCv);
+}
+
+function paintPreview(){
+  if(!pageCanvas || !previewCv || !pageMeta) return;
+  if(previewCv.width !== pageCanvas.width){ previewCv.width = pageCanvas.width; previewCv.height = pageCanvas.height; }
+  previewCv.style.width = pageMeta.cssW + "px";
+  var ctx = previewCv.getContext("2d");
+  ctx.clearRect(0, 0, previewCv.width, previewCv.height);
+  ctx.drawImage(pageCanvas, 0, 0);
+
+  var strip = stripForPdf();
+  if(!strip){
+    el.pdfReadout.textContent = "No chords to place yet.";
+    return;
+  }
+  if(!pageHasStrip(curPage())){
+    el.pdfReadout.textContent = "No chord strip on page " + curPage() +
+      " — tick “Chords on this page” to add one.";
+    return;
+  }
+  var s = pageMeta.s;
+  var p = placement(pageMeta.baseW, pageMeta.baseH, strip.width / strip.height);
+  var dx = p.x * s, dy = p.yTop * s, dw = p.w * s, dh = p.h * s;
+
+  if(el.pdfBacking.checked){
+    var pad = 6 * s;
+    ctx.fillStyle = "#FFFFFF";
+    ctx.fillRect(dx - pad, dy - pad, dw + pad*2, dh + pad*2);
+  }
+  ctx.drawImage(strip, dx, dy, dw, dh);
+
+  // handle chrome, so it reads as something you can grab
+  ctx.save();
+  ctx.strokeStyle = accentColor;
+  ctx.lineWidth = 2;
+  ctx.setLineDash([7, 5]);
+  ctx.strokeRect(dx - 1, dy - 1, dw + 2, dh + 2);
+  ctx.setLineDash([]);
+  // the grip sits just inside the corner, so it stays reachable at the page edge
+  ctx.fillStyle = accentColor;
+  ctx.fillRect(dx + dw - HANDLE, dy + dh - HANDLE, HANDLE, HANDLE);
+  ctx.strokeStyle = "#FFFFFF"; ctx.lineWidth = 2;
+  ctx.strokeRect(dx + dw - HANDLE, dy + dh - HANDLE, HANDLE, HANDLE);
+  ctx.restore();
+
+  el.pdfReadout.textContent =
+    "left " + Math.round(p.x / MM) + "mm  ·  top " + Math.round(p.yTop / MM) +
+    "mm  ·  " + Math.round(p.w / MM) + " × " + Math.round(p.h / MM) + "mm";
+}
+
+function drawPdfPreview(){
+  if(!pdfSource || !pdfSource.doc || el.pdfPanel.hidden) return;
+  try{
+    accentColor = (getComputedStyle(document.documentElement).getPropertyValue("--accent") || "").trim() || accentColor;
+  }catch(e){}
+  var pageNo = clamp(Number(el.pdfPage.value) || 1, 1, pdfSource.numPages);
+  ensurePageRender(pageNo).then(function(){
+    ensurePreviewCanvas();
+    paintPreview();
+    el.pdfWarn.hidden = !pageMeta.rotate;
+    if(pageMeta.rotate){
+      el.pdfWarn.textContent = "This page is rotated " + pageMeta.rotate +
+        "°, so the strip may land somewhere other than the preview shows.";
+    }
+  }).catch(function(e){
+    console.error(e);
+    pdfPlaceholder("Couldn’t render that page.");
+  });
+}
+
+/* ---------------- drag to move, corner to resize ---------------- */
+function attachPlacementEvents(cv){
+  var drag = null;
+
+  function toPage(ev){
+    var r = cv.getBoundingClientRect();
+    var k = pageMeta.baseW / r.width;
+    return {x:(ev.clientX - r.left) * k, y:(ev.clientY - r.top) * k, k:k};
+  }
+  function current(){
+    var strip = stripForPdf();
+    if(!strip || !pageHasStrip(curPage())) return null;
+    var p = placement(pageMeta.baseW, pageMeta.baseH, strip.width / strip.height);
+    p.aspect = strip.width / strip.height;
+    return p;
+  }
+  function zone(pt, p){
+    var grip = HANDLE / pageMeta.s;        // grip size in page points
+    var tol = 11 * pt.k;                   // generous, so a fingertip lands on it
+    var gx = p.x + p.w, gy = p.yTop + p.h;
+    if(pt.x >= gx - grip - tol && pt.x <= gx + tol && pt.y >= gy - grip - tol && pt.y <= gy + tol) return "resize";
+    if(pt.x >= p.x && pt.x <= p.x + p.w && pt.y >= p.yTop && pt.y <= p.yTop + p.h) return "move";
+    return null;
+  }
+
+  cv.addEventListener("pointermove", function(ev){
+    if(drag) return;
+    var p = current(); if(!p) return;
+    var z = zone(toPage(ev), p);
+    cv.style.cursor = z === "resize" ? "nwse-resize" : (z === "move" ? "grab" : "default");
+  });
+
+  cv.addEventListener("pointerdown", function(ev){
+    var p = current(); if(!p) return;
+    var pt = toPage(ev);
+    var z = zone(pt, p);
+    if(!z) return;
+    ev.preventDefault();
+    cv.focus();
+    cv.setPointerCapture(ev.pointerId);
+    cv.style.cursor = z === "resize" ? "nwse-resize" : "grabbing";
+    drag = z === "resize"
+      ? {mode:"resize", startX:pt.x, startY:pt.y, startW:p.w, aspect:p.aspect}
+      : {mode:"move", dx:pt.x - p.x, dy:pt.y - p.yTop};
+  });
+
+  cv.addEventListener("pointermove", function(ev){
+    if(!drag) return;
+    var pt = toPage(ev);
+    var pageW = pageMeta.baseW, pageH = pageMeta.baseH;
+
+    if(drag.mode === "resize"){
+      var w = clamp(drag.startW + (pt.x - drag.startX), pageW * 0.10, pageW);
+      placeEntry().wPct = clamp(Math.round(w / pageW * 100), 10, 100);
+    } else {
+      var p = current(); if(!p) return;
+      var nx = pt.x - drag.dx, ny = pt.y - drag.dy;
+      var m = MARGIN_MM * MM;
+      var tol = 6 * pt.k;
+      [m, pageW - m - p.w, (pageW - p.w) / 2].forEach(function(c){ if(Math.abs(nx - c) <= tol) nx = c; });
+      [m, pageH - m - p.h, (pageH - p.h) / 2].forEach(function(c){ if(Math.abs(ny - c) <= tol) ny = c; });
+      var e = placeEntry();
+      e.xf = clamp(nx, 0, Math.max(0, pageW - p.w)) / pageW;
+      e.yf = clamp(ny, 0, Math.max(0, pageH - p.h)) / pageH;
+    }
+    paintPreview();
+  });
+
+  ["pointerup","pointercancel"].forEach(function(name){
+    cv.addEventListener(name, function(ev){
+      if(!drag) return;
+      drag = null;
+      try{ cv.releasePointerCapture(ev.pointerId); }catch(e){}
+      cv.style.cursor = "grab";
+      paintPreview();
+    });
+  });
+
+  cv.addEventListener("keydown", function(ev){
+    var step = ev.shiftKey ? 10 : 1;
+    var dx = 0, dy = 0;
+    if(ev.key === "ArrowLeft") dx = -step;
+    else if(ev.key === "ArrowRight") dx = step;
+    else if(ev.key === "ArrowUp") dy = -step;
+    else if(ev.key === "ArrowDown") dy = step;
+    else return;
+    var p = current(); if(!p) return;
+    ev.preventDefault();
+    var ke = placeEntry();
+    ke.xf = clamp(p.x + dx, 0, Math.max(0, pageMeta.baseW - p.w)) / pageMeta.baseW;
+    ke.yf = clamp(p.yTop + dy, 0, Math.max(0, pageMeta.baseH - p.h)) / pageMeta.baseH;
+    paintPreview();
+  });
+}
+
+function updatePager(){
+  var n = (pdfSource && pdfSource.numPages) || 1;
+  var cur = clamp(Number(el.pdfPage.value) || 1, 1, n);
+  el.pdfPageLbl.textContent = cur + " / " + n;
+  el.pdfPrevPage.hidden = cur <= 1;        // shown only when there is somewhere to go
+  el.pdfNextPage.hidden = cur >= n;
+  el.pdfThisPage.checked = pageHasStrip(cur);
+  var all = true;
+  for(var i=1;i<=n;i++) if(!pageHasStrip(i)) all = false;
+  el.pdfAllPages.checked = all && n > 1;
+}
+function goPage(delta){
+  if(!pdfSource) return;
+  var n = pdfSource.numPages || 1;
+  var cur = clamp((Number(el.pdfPage.value) || 1) + delta, 1, n);
+  if(String(cur) === el.pdfPage.value) return;
+  el.pdfPage.value = String(cur);
+  updatePager();
+  drawPdfPreview();
+}
+el.pdfPrevPage.addEventListener("click", function(){ goPage(-1); });
+el.pdfNextPage.addEventListener("click", function(){ goPage(1); });
+
+el.pdfThisPage.addEventListener("change", function(){
+  placeEntry().on = el.pdfThisPage.checked;
+  updatePager();
+  paintPreview();
+});
+el.pdfAllPages.addEventListener("change", function(){
+  var n = (pdfSource && pdfSource.numPages) || 1, want = el.pdfAllPages.checked;
+  for(var i=1;i<=n;i++) placeEntry(i).on = want || i === curPage();
+  updatePager();
+  paintPreview();
+});
+el.pdfBacking.addEventListener("change", paintPreview);
+el.pdfAnchor.addEventListener("change", snapToAnchor);
+el.pdfSnap.addEventListener("click", snapToAnchor);
+
+el.pdfSave.addEventListener("click", function(){
+  if(!pdfSource || !downloads) return;
+  var list = items();
+  if(!list.length){ toast("No chords to stamp", true); return; }
+  el.pdfSave.disabled = true;
+  var saved = false, stamped = 0;
+
+  ensurePdfLib().then(function(PDFLib){
+    var strip = renderCanvas(list, drawOpts(true), state.scale, null).canvas;
+    return new Promise(function(res){ strip.toBlob(function(b){ res(b); }, "image/png"); })
+      .then(function(blob){ return blob.arrayBuffer(); })
+      .then(function(pngBytes){
+        return PDFLib.PDFDocument.load(pdfSource.bytes, {ignoreEncryption:true})
+          .then(function(doc){ return doc.embedPng(pngBytes).then(function(png){ return {doc:doc, png:png, L:PDFLib}; }); });
+      });
+  }).then(function(o){
+    var pages = o.doc.getPages();
+    var wanted = [];
+    pages.forEach(function(page, n){ if(pageHasStrip(n + 1)) wanted.push({page:page, no:n + 1}); });
+    stamped = wanted.length;
+    wanted.forEach(function(t){
+      var page = t.page, pageNo = t.no;
+      var size = page.getSize();   // measured per page, so mixed page sizes still line up
+      var p = placement(size.width, size.height, o.png.width / o.png.height, pageNo);
+      if(el.pdfBacking.checked){
+        page.drawRectangle({ x:p.x - 6, y:p.y - 6, width:p.w + 12, height:p.h + 12, color:o.L.rgb(1,1,1) });
+      }
+      page.drawImage(o.png, {x:p.x, y:p.y, width:p.w, height:p.h});
+    });
+    if(!stamped) throw {code:"nopages"};
+    return o.doc.save();
+  }).then(function(bytes){
+    var stem = pdfSource.name.replace(/\.pdf$/i, "");
+    return downloads.save({ filename: stem + " (chords).pdf", data: bytes }).then(function(){ saved = true; });
+  }).then(function(){
+    if(saved) toast(stamped > 1
+      ? "Saved a new PDF with the chords on " + stamped + " pages"
+      : "Saved a new PDF with the chords on page " + el.pdfPage.value);
+  }).catch(function(e){
+    if(e && e.code === "declined") return;
+    if(e && e.code === "nopages"){ toast("No page is set to carry the chords", true); return; }
+    console.error(e);
+    if(e && e.code){ toast("Couldn't save that file", true); return; }
+    var locked = false;
+    try{ locked = new TextDecoder("latin1").decode(pdfSource.bytes).indexOf("/Encrypt") >= 0; }catch(_){}
+    toast(locked
+      ? "That PDF is locked against editing — use Copy PNG and paste it instead"
+      : "Couldn't write that PDF — use Copy PNG and paste it instead", true);
+  }).then(function(){
+    el.pdfSave.disabled = false;
+  });
+});
+
+/* ===================== 7. Rebuilding the sheet in one page ===================== */
+
+/* Chord-over-lyric sheets waste a line on every chord row. Pairing each chord
+   with the word it sits above, by x position rather than by counting spaces,
+   folds two lines into one and usually halves the page count. */
+
+function rowTokens(line){
+  return line.text.split(/[\s|]+/).filter(function(t){ return t && !JUNK.test(t); });
+}
+function rowChordRatio(line){
+  var t = rowTokens(line);
+  if(!t.length) return 0;
+  var hits = 0;
+  t.forEach(function(x){ if(parseChord(tidyToken(x), true)) hits++; });
+  return hits / t.length;
+}
+function isNoise(line){
+  var t = line.text.trim();
+  if(!t) return false;
+  if(/ukutabs\.com|ultimate-guitar|^\s*page \d+/i.test(t)) return true;
+  if(isNoteLegend(t)) return true;
+  if(!/[A-Za-z0-9]/.test(t)) return true;                    // "/ /" style dividers
+  if(/arrangement for the song is the author|does not own any songs|for private study, scholarship/i.test(t)) return true;
+  if(/^[\d\s]+$/.test(t)) return true;                        // stray fingering digits
+  var toks = t.split(/\s+/);
+  if(toks.length >= 4 && toks.every(function(x){ return /^[1-4]$/.test(x); })) return true;  // finger numbers
+  return false;
+}
+
+/* Every character's x position across a line, so a chord can be dropped at the
+   letter it actually sits over. */
+function charPositions(line){
+  var runs = line.runs.slice().sort(function(a,b){ return a.x - b.x; });
+  var cw = line.cw, str = "", xs = [], endX = null;
+  runs.forEach(function(run){
+    if(endX !== null){
+      var gap = run.x - endX;
+      var n = gap > cw * 0.4 ? Math.max(1, Math.round(gap / cw)) : (gap > 0.6 ? 1 : 0);
+      for(var k=0;k<Math.min(n,80);k++){ str += " "; xs.push(endX + gap * (k + 0.5) / Math.max(1,n)); }
+    }
+    var w = run.s.length ? (run.w || cw * run.s.length) / run.s.length : cw;
+    for(var i=0;i<run.s.length;i++){ str += run.s.charAt(i); xs.push(run.x + i * w); }
+    endX = run.x + (run.w || cw * run.s.length);
+  });
+  return {str:str, xs:xs};
+}
+
+/* Chord names with their own x, splitting runs that hold more than one. */
+function chordMarks(line){
+  var marks = [];
+  line.runs.forEach(function(run){
+    var w = run.s.length ? (run.w || line.cw * run.s.length) / run.s.length : line.cw;
+    var re = /\S+/g, m;
+    while((m = re.exec(run.s))){
+      var name = tidyToken(m[0]);
+      if(parseChord(name, true)) marks.push({x: run.x + m.index * w, name: name});
+    }
+  });
+  return marks.sort(function(a,b){ return a.x - b.x; });
+}
+
+function mergeChords(chordLine, lyricLine){
+  var lp = charPositions(lyricLine);
+  var marks = chordMarks(chordLine);
+  var ins = marks.map(function(mk){
+    var pos = lp.str.length;
+    for(var i=0;i<lp.xs.length;i++){ if(lp.xs[i] >= mk.x - 0.6){ pos = i; break; } }
+    return {pos:pos, name:mk.name};
+  });
+  var out = lp.str;
+  ins.sort(function(a,b){ return b.pos - a.pos; }).forEach(function(k){
+    out = out.slice(0, k.pos) + "[" + k.name + "]" + out.slice(k.pos);
+  });
+  return out.replace(/[ \t]{2,}/g, " ").replace(/^\s+|\s+$/g, "");
+}
+
+function looksLikeLyric(line){
+  var words = line.text.trim().split(/\s+/).filter(function(w){ return /[A-Za-z]{2,}/.test(w); });
+  return words.length >= 2;
+}
+
+function looksLikeLabel(t){
+  return /^[A-Za-z][A-Za-z0-9 '’/-]{0,24}:\s*$/.test(t) ||
+         /^(intro|verse|chorus|bridge|outro|solo|riff|pre-?chorus|interlude|tag|coda|ending)\b/i.test(t);
+}
+
+function reflowPdf(){
+  if(!pdfSource || !pdfSource.pages) return [];
+  var blocks = [], seenLyric = false;
+
+  pdfSource.pages.forEach(function(lines){
+    var i = 0;
+    var usable = lines.filter(function(l){ return l.text.trim() && !isNoise(l); });
+    while(i < usable.length){
+      var line = usable[i], txt = line.text.trim();
+
+      if(isTabLine(txt)){ blocks.push({t:"tab", s:line.text.replace(/\s+$/,"")}); i++; continue; }
+
+      var ratio = rowChordRatio(line);
+      if(ratio >= 0.6){
+        var next = usable[i+1];
+        var gap = next ? (line.y - next.y) : 999;
+        var nextIsLyric = next && rowChordRatio(next) < 0.4 &&
+                          !isTabLine(next.text.trim()) && looksLikeLyric(next) &&
+                          gap > 0 && gap <= 26;      // the very next line down, not a distant one
+        if(nextIsLyric && !looksLikeLabel(next.text.trim())){
+          if(reflowMode() === "above"){
+            // keep the two-line shape, restoring the chord line's indent
+            var lx = (next.runs[0] && next.runs[0].x) || 0;
+            var cx = (line.runs[0] && line.runs[0].x) || 0;
+            var pad = Math.round((cx - lx) / (next.cw || 3.4));
+            blocks.push({t:"monoc", s: spaces(pad) + line.text.replace(/\s+$/, "")});
+            blocks.push({t:"mono",  s: next.text.replace(/\s+$/, "")});
+          } else {
+            blocks.push({t:"line", s: mergeChords(line, next)});
+          }
+          seenLyric = true;
+          i += 2; continue;
+        }
+        // A chord row with nothing to sit on. Before the first lyric it is the
+        // diagram legend, which the chord strip already covers.
+        if(seenLyric) blocks.push({t:"chords", s: chordMarks(line).map(function(m){ return m.name; }).join("  ")});
+        i++; continue;
+      }
+
+      if(looksLikeLabel(txt)){
+        blocks.push({t:"label", s:txt.replace(/\s*:\s*$/, "").replace(/\s+/g, " ")});
+        i++; continue;
+      }
+      blocks.push({t:"line", s:txt.replace(/[ \t]{2,}/g, " ")});
+      seenLyric = true;
+      i++;
+    }
+    blocks.push({t:"gap"});
+  });
+
+  // collapse runs of gaps
+  var clean = [];
+  blocks.forEach(function(b){
+    if(b.t === "gap" && (!clean.length || clean[clean.length-1].t === "gap")) return;
+    clean.push(b);
+  });
+  while(clean.length && clean[clean.length-1].t === "gap") clean.pop();
+  return clean;
+}
+
+/* Typed or pasted text has no page geometry, so the chord column is simply the
+   character column. That is exactly right for text, where the spaces are real. */
+function textTokens(l){ return l.split(/[\s|]+/).filter(function(t){ return t && !JUNK.test(t); }); }
+function textChordRatio(l){
+  var t = textTokens(l);
+  if(!t.length) return 0;
+  var hit = 0;
+  t.forEach(function(x){ if(parseChord(tidyToken(x), true)) hit++; });
+  return hit / t.length;
+}
+function mergeByColumn(chordLine, lyricLine){
+  var ins = [], re = /\S+/g, m;
+  while((m = re.exec(chordLine))){
+    var name = tidyToken(m[0]);
+    if(parseChord(name, true)) ins.push({pos:m.index, name:name});
+  }
+  var out = lyricLine.replace(/\s+$/, "");
+  ins.sort(function(a,b){ return b.pos - a.pos; }).forEach(function(k){
+    var pos = Math.min(k.pos, out.length);
+    out = out.slice(0, pos) + "[" + k.name + "]" + out.slice(pos);
+  });
+  return out.replace(/[ \t]{2,}/g, " ").trim();
+}
+
+function reflowMode(){ return el.reflowMode && el.reflowMode.value === "above" ? "above" : "inline"; }
+function spaces(n){ return n > 0 ? new Array(Math.min(n, 200) + 1).join(" ") : ""; }
+
+function reflowFromText(txt){
+  var lines = txt.split(/\r?\n/), blocks = [], i = 0;
+  while(i < lines.length){
+    var raw = lines[i], t = raw.trim();
+    if(!t){ blocks.push({t:"gap"}); i++; continue; }
+    if(isTabLine(raw)){ blocks.push({t:"tab", s:raw.replace(/\s+$/, "")}); i++; continue; }
+    if(isNoteLegend(t)){ i++; continue; }
+
+    if(textChordRatio(raw) >= 0.6){
+      var nx = lines[i+1];
+      var words = nx ? nx.trim().split(/\s+/).filter(function(w){ return /[A-Za-z]{2,}/.test(w); }) : [];
+      var pairs = nx && nx.trim() && textChordRatio(nx) < 0.4 && !isTabLine(nx) &&
+                  words.length >= 2 && !looksLikeLabel(nx.trim());
+      if(pairs){
+        if(reflowMode() === "above"){
+          blocks.push({t:"monoc", s: raw.replace(/\s+$/, "")});
+          blocks.push({t:"mono",  s: nx.replace(/\s+$/, "")});
+        } else {
+          blocks.push({t:"line", s: mergeByColumn(raw, nx)});
+        }
+        i += 2; continue;
+      }
+      blocks.push({t:"chords", s: textTokens(raw).filter(function(x){
+        return parseChord(tidyToken(x), true);
+      }).join("  ")});
+      i++; continue;
+    }
+    if(looksLikeLabel(t)){
+      blocks.push({t:"label", s:t.replace(/\s*:\s*$/, "").replace(/\s+/g, " ")});
+      i++; continue;
+    }
+    blocks.push({t:"line", s:t.replace(/[ \t]{2,}/g, " ")});
+    i++;
+  }
+  var clean = [];
+  blocks.forEach(function(b){
+    if(b.t === "gap" && (!clean.length || clean[clean.length-1].t === "gap")) return;
+    clean.push(b);
+  });
+  while(clean.length && clean[clean.length-1].t === "gap") clean.pop();
+  return clean;
+}
+
+function blocksToText(blocks){
+  return blocks.map(function(b){
+    if(b.t === "gap") return "";
+    if(b.t === "label") return b.s + ":";
+    return b.s;
+  }).join("\n");
+}
+function textToBlocks(txt){
+  var above = reflowMode() === "above";
+  return txt.split(/\r?\n/).map(function(l){
+    var t = l.replace(/\s+$/,"");
+    if(!t.trim()) return {t:"gap"};
+    if(isTabLine(t)) return {t:"tab", s:t};
+    if(looksLikeLabel(t.trim())) return {t:"label", s:t.trim().replace(/\s*:\s*$/,"")};
+    if(above) return {t: textChordRatio(t) >= 0.6 ? "monoc" : "mono", s:t};
+    return {t:"line", s:t.trim()};
+  });
+}
+
+/* ---------------------------- the PDF builder ---------------------------- */
+
+var TEXT_SWAPS = [
+  [/[♭]/g, "b"], [/[♯]/g, "#"], [/[‘’‛]/g, "'"],
+  [/[“”]/g, '"'], [/[–—−]/g, "-"], [/[…]/g, "..."],
+  [/[     ]/g, " "], [/[•]/g, "-"], [/[×]/g, "x"],
+  [/[↑]/g, "^"], [/[↓]/g, "v"], [/[​‌‍﻿]/g, ""]
+];
+function safeText(str){
+  var t = String(str == null ? "" : str);
+  TEXT_SWAPS.forEach(function(sw){ t = t.replace(sw[0], sw[1]); });
+  // anything the standard fonts still cannot set becomes a plain dot
+  return t.replace(/[^\u0000-ÿ]/g, ".");
+}
+function finite(n){ return typeof n === "number" && isFinite(n); }
+
+function splitSegments(s){
+  var segs = [], re = /\[([^\]\n]{1,14})\]/g, last = 0, m;
+  while((m = re.exec(s))){
+    if(m.index > last) segs.push({chord:false, s:s.slice(last, m.index)});
+    segs.push({chord:true, s:"[" + m[1] + "]"});
+    last = m.index + m[0].length;
+  }
+  if(last < s.length) segs.push({chord:false, s:s.slice(last)});
+  return segs;
+}
+
+function planSheet(blocks, ctx){
+  var pages = [[]], y = ctx.top, page = 0;
+  var lh = ctx.size * 1.34;
+
+  var floorY = ctx.bottom != null ? ctx.bottom : ctx.margin;
+  function nl(h){
+    y -= h;
+    if(y < floorY){ pages.push([]); page++; y = ctx.pageH - ctx.margin - h; }
+  }
+  function put(op){ pages[page].push(op); }
+
+  blocks.forEach(function(b){
+    if(b.t === "gap"){
+      y -= ctx.size * 0.55;
+      if(y < floorY){ pages.push([]); page++; y = ctx.pageH - ctx.margin; }
+      return;
+    }
+
+    if(b.t === "tab" || b.t === "mono" || b.t === "monoc"){
+      var fs = ctx.monoSize;
+      nl(fs * (b.t === "monoc" ? 1.15 : 1.25));
+      put({kind: b.t === "monoc" ? "monob" : "mono", s:b.s, x:ctx.margin, y:y, size:fs});
+      return;
+    }
+    if(b.t === "label"){
+      y -= ctx.size * 0.35;
+      nl(lh);
+      put({kind:"label", s:b.s, x:ctx.margin, y:y, size:ctx.size * 1.02});
+      return;
+    }
+    if(b.t === "chords"){
+      nl(lh);
+      put({kind:"chordrow", s:b.s, x:ctx.margin, y:y, size:ctx.size});
+      return;
+    }
+
+    // a lyric line, wrapped, with bold chords
+    var segs = splitSegments(b.s);
+    var line = [], x = ctx.margin;
+    function flush(){
+      if(!line.length) return;
+      nl(lh);
+      var yy = y;
+      line.forEach(function(p){ put({kind:"seg", s:p.s, x:p.x, y:yy, size:ctx.size, bold:p.bold}); });
+      line = []; x = ctx.margin;
+    }
+    segs.forEach(function(seg){
+      var font = seg.chord ? ctx.bold : ctx.body;
+      var parts = seg.chord ? [seg.s] : seg.s.split(/(\s+)/).filter(function(t){ return t !== ""; });
+      parts.forEach(function(tok){
+        var w = font.widthOfTextAtSize(tok, ctx.size);
+        if(x + w > ctx.right && /\S/.test(tok)){ flush(); }
+        if(x === ctx.margin && /^\s+$/.test(tok)) return;
+        line.push({s:tok, x:x, bold:seg.chord});
+        x += w;
+      });
+    });
+    flush();
+  });
+  return pages;
+}
+
+function buildSheetPdf(blocks, opts){
+  // Measuring a string encodes it too, so clean the text before anything
+  // touches it rather than only at drawing time.
+  blocks = (blocks || []).map(function(b){
+    return b && typeof b.s === "string" ? {t:b.t, s:safeText(b.s)} : b;
+  });
+  opts = opts || {};
+  opts.title = safeText(opts.title || "");
+  opts.artist = safeText(opts.artist || "");
+
+  return ensurePdfLib().then(function(L){
+    var doc0 = null;
+    return L.PDFDocument.create().then(function(doc){
+      doc0 = doc;
+      return Promise.all([
+        doc.embedFont(L.StandardFonts.Helvetica),
+        doc.embedFont(L.StandardFonts.HelveticaBold),
+        doc.embedFont(L.StandardFonts.Courier),
+        doc.embedFont(L.StandardFonts.CourierBold)
+      ]);
+    }).then(function(fonts){
+      var body = fonts[0], bold = fonts[1], mono = fonts[2], monob = fonts[3];
+      var pageW = opts.pageW, pageH = opts.pageH;
+      var margin = Math.round((opts.marginIn || 0.5) * 72);   // inches to points
+
+      // header: title, artist and the chord strip
+      var stripImg = null, stripW = 0, stripH = 0;
+      var pre = Promise.resolve();
+      if(opts.stripPng){
+        pre = doc0.embedPng(opts.stripPng).then(function(img){
+          stripImg = img;
+          stripW = Math.min(pageW - margin*2, pageW * 0.50);
+          stripH = stripW * (img.height / img.width);
+        });
+      }
+      return pre.then(function(){
+        var headH = 0;
+        if(opts.title) headH += 20;
+        if(opts.artist) headH += 14;
+        var top = pageH - margin - Math.max(headH, stripH) - 10;
+        var layout = {
+          pageW:pageW, pageH:pageH, margin:margin,
+          title:opts.title || "", artist:opts.artist || "",
+          strip: stripImg ? {x: pageW - margin - stripW, y: pageH - margin - stripH,
+                             w: stripW, h: stripH} : null
+        };
+
+        // Courier advances exactly 0.6 em, so the longest fixed-width line
+        // decides how large monospace can be without running off the page.
+        var longest = 0;
+        blocks.forEach(function(b){
+          if(b.t === "tab" || b.t === "mono" || b.t === "monoc") longest = Math.max(longest, (b.s || "").length);
+        });
+        var textW = pageW - margin * 2;
+
+        var floor = opts.minSize || 11;
+        var start = Math.max(floor, 12);
+        var sizes = [];
+        for(var sz = start; sz >= floor - 0.001; sz -= 0.5) sizes.push(Math.round(sz * 10) / 10);
+        if(!sizes.length) sizes = [floor];
+        var plan = null, chosen = sizes[sizes.length-1];
+        for(var i=0;i<sizes.length;i++){
+          var footSize = Math.max(7, Math.min(9, sizes[i] * 0.8));
+          var ctx = {size:sizes[i], top:top, margin:margin, pageH:pageH,
+                     bottom: margin + footSize + 9,
+                     right:pageW - margin, body:body, bold:bold};
+          ctx.monoSize = longest
+            ? Math.min(sizes[i] * 0.92, textW / (longest * 0.6))
+            : sizes[i] * 0.92;
+          var pg = planSheet(blocks, ctx);
+          if(pg.length <= opts.targetPages){ plan = pg; chosen = sizes[i]; break; }
+          if(!plan){ plan = pg; chosen = sizes[i]; }
+          plan = pg; chosen = sizes[i];
+        }
+
+        // title, artist and a page number along the foot of every page
+        var footSize = Math.max(7, Math.min(9, chosen * 0.8));
+        var footLeft = [opts.title, opts.artist].filter(Boolean).join(" \u2014 ");
+        var manyPages = plan.length > 1;
+        plan.forEach(function(ops, idx){
+          if(footLeft) ops.push({kind:"foot", s:footLeft, x:margin, y:margin + 2, size:footSize});
+          if(manyPages){
+            var t = "Page " + (idx + 1) + " of " + plan.length;
+            ops.push({kind:"foot", s:t, size:footSize, y:margin + 2,
+                      x: pageW - margin - body.widthOfTextAtSize(t, footSize)});
+          }
+        });
+
+        var drawn = 0, failed = 0;
+        function put(pg, str, o){
+          if(!finite(o.x) || !finite(o.y) || !finite(o.size) || o.size <= 0){ failed++; return; }
+          var txt = safeText(str);
+          if(!txt) return;
+          try{ pg.drawText(txt, o); drawn++; }
+          catch(err){ failed++; console.error("drawText failed:", err && err.message, JSON.stringify(txt.slice(0,40))); }
+        }
+
+        plan.forEach(function(ops, idx){
+          var pg = doc0.addPage([pageW, pageH]);
+          if(idx === 0){
+            var ty = pageH - margin - 14;
+            if(opts.title){ put(pg, opts.title, {x:margin, y:ty, size:16, font:bold}); ty -= 15; }
+            if(opts.artist){ put(pg, opts.artist, {x:margin, y:ty, size:10.5, font:body, color:L.rgb(.35,.35,.35)}); }
+            if(stripImg){
+              pg.drawImage(stripImg, {x:pageW - margin - stripW, y:pageH - margin - stripH,
+                                      width:stripW, height:stripH});
+            }
+          }
+          ops.forEach(function(op){
+            var font = op.kind === "mono"  ? mono
+                     : op.kind === "monob" ? monob
+                     : (op.kind === "label" || op.kind === "chordrow" || op.bold) ? bold
+                     : body;
+            var o = {x:op.x, y:op.y, size:op.size, font:font};
+            if(op.kind === "foot") o.color = L.rgb(.42, .42, .42);
+            put(pg, op.s, o);
+          });
+        });
+        return doc0.save().then(function(bytes){
+          return {bytes:bytes, pages:plan.length, size:chosen, drawn:drawn, failed:failed,
+                  plan:plan, layout:layout};
+        });
+      });
+    });
+  });
+}
+
+function songTitleArtist(){
+  if(pdfSource && pdfSource.pages && pdfSource.pages.length){
+    var first = pdfSource.pages[0].filter(function(l){
+      var t = l.text.trim();
+      return t && !isNoise(l) && !/^[\/\\|\-\s]+$/.test(t);
+    }).slice(0, 3).map(function(l){ return l.text.trim(); });
+    var title = first[0] || pdfSource.name.replace(/\.pdf$/i, "");
+    var artist = first[1] || "";
+    if(/^[\/\\|\-\s]+$/.test(artist)) artist = first[2] || "";
+    return {title:title, artist:artist};
+  }
+  // typed text: take the first couple of lines, if they are not chords
+  var lines = state.text.split(/\r?\n/).map(function(l){ return l.trim(); })
+                        .filter(function(l){ return l; });
+  var t2 = "", a2 = "";
+  if(lines.length && lines[0].length <= 70 && textChordRatio(lines[0]) < 0.5) t2 = lines[0];
+  if(lines.length > 1 && lines[1].length <= 70 && textChordRatio(lines[1]) < 0.5 &&
+     !looksLikeLabel(lines[1])) a2 = lines[1];
+  return {title:t2, artist:a2};
+}
+
+var reflowDirty = false, reflowSrc = "", namesDirty = false;
+el.reflowText.addEventListener("input", function(){ reflowDirty = true; updateReflowStat(); });
+[el.reflowTitleIn, el.reflowArtistIn].forEach(function(n){
+  n.addEventListener("input", function(){ namesDirty = true; });
+});
+
+function reflowSource(){
+  if(pdfSource && pdfSource.pages) return "pdf:" + pdfSource.name;
+  return "txt:" + state.text;
+}
+
+function refreshReflow(force){
+  var hasPdf = !!(pdfSource && pdfSource.pages);
+  var hasTxt = !!state.text.trim();
+  if(!hasPdf && !hasTxt){ el.reflowPanel.hidden = true; return; }
+  el.reflowPanel.hidden = false;
+  el.reflowTitleLbl.textContent = hasPdf ? "Rebuild as a short sheet" : "Build a sheet PDF";
+  el.reflowBuild.textContent = hasPdf ? "Build short sheet" : "Build sheet PDF";
+  el.reflowStrip.parentNode.hidden = false;
+
+  if(typeof syncSubTabs === "function") syncSubTabs();
+  var src = reflowSource();
+  if(!force && src === reflowSrc){ updateReflowStat(); return; }
+  reflowSrc = src;
+  reflowDirty = false;
+  clearSheetPreview();
+  if(typeof scheduleSheetBuild === "function") scheduleSheetBuild();
+
+  var blocks = hasPdf ? reflowPdf() : reflowFromText(state.text);
+  var names = songTitleArtist();
+  var drop = {};
+  [names.title, names.artist].forEach(function(n){ if(n) drop[n.toLowerCase().trim()] = 1; });
+  while(blocks.length){
+    var b = blocks[0];
+    if(b.t === "gap" || b.t === "chords" ||
+       (b.s && drop[b.s.toLowerCase().replace(/\[[^\]]*\]/g, "").trim()])) blocks.shift();
+    else break;
+  }
+  el.reflowText.value = blocksToText(blocks);
+  if(!namesDirty || force){
+    el.reflowTitleIn.value = names.title;
+    el.reflowArtistIn.value = names.artist;
+    if(force) namesDirty = false;
+  }
+  updateReflowStat();
+}
+
+function updateReflowStat(){
+  var lines = el.reflowText.value.split(/\r?\n/).filter(function(l){ return l.trim(); }).length;
+  el.reflowStat.textContent = (pdfSource && pdfSource.numPages)
+    ? pdfSource.numPages + " page" + (pdfSource.numPages > 1 ? "s" : "") + " in → " + lines + " lines out"
+    : lines + " lines";
+}
+function updateReflowHint(){
+  el.reflowHint.innerHTML = reflowMode() === "above"
+    ? "Keeps the chord line sitting above the words, exactly as the sheet was written, set in a fixed-width face so the columns stay put. Edit anything below before building."
+    : "Folds each chord line into the lyric line below it as <code>[C]</code> marks, which fits far more on a page. Edit anything below before building.";
+}
+el.reflowMode.addEventListener("change", function(){
+  updateReflowHint();
+  reflowDirty = false;
+  refreshReflow(true);
+  scheduleSheetBuild();
+});
+updateReflowHint();
+
+
+
+function buildSheetNow(auto){
+  if(!downloads){ if(!auto) toast("Saving files isn't available in this view", true); return; }
+  var txt = el.reflowText.value;
+  if(!txt.trim()){ if(!auto) toast("Nothing to build", true); return; }
+  if(sheetBuilding){ sheetAgain = true; return; }
+  sheetBuilding = true;
+  el.reflowBuild.disabled = true;
+
+  var blocks = textToBlocks(txt);
+  var sizePt = [612, 792];
+  if(pdfSource && pageMeta && pageMeta.baseW) sizePt = [pageMeta.baseW, pageMeta.baseH];
+
+  sheetStripCv = null;
+  var stripPromise = Promise.resolve(null);
+  if(el.reflowStrip.checked && items().length){
+    var opt = drawOpts(true);
+    if(!el.reflowStrum.checked){ opt.strum = []; opt.strumName = ""; }
+    sheetStripCv = renderCanvas(items(), opt, 3, null).canvas;
+    var cv = sheetStripCv;
+    stripPromise = new Promise(function(res){ cv.toBlob(function(b){ res(b); }, "image/png"); })
+      .then(function(blob){ return blob.arrayBuffer(); });
+  }
+
+  stripPromise.then(function(png){
+    return buildSheetPdf(blocks, {
+      pageW: sizePt[0], pageH: sizePt[1],
+      targetPages: Number(el.reflowPages.value) || 1,
+      minSize: Math.max(4, Math.min(24, Number(el.reflowMin.value) || 11)),
+      marginIn: Math.max(0.25, Math.min(2, Number(el.reflowMargin.value) || 0.5)),
+      stripPng: png,
+      title: el.reflowHead.checked ? el.reflowTitleIn.value.trim() : "",
+      artist: el.reflowHead.checked ? el.reflowArtistIn.value.trim() : ""
+    });
+  }).then(function(res){
+    if(!res.drawn){
+      toast("The sheet came out blank \u2014 nothing could be typeset", true);
+    } else if(res.failed && !auto){
+      toast(res.failed + " line" + (res.failed > 1 ? "s" : "") + " could not be typeset", true);
+    }
+    builtSheet = {
+      bytes: res.bytes,
+      pages: res.pages,
+      size: res.size,
+      drawn: res.drawn,
+      failed: res.failed,
+      plan: res.plan,
+      layout: res.layout,
+      name: (pdfSource ? pdfSource.name.replace(/\.pdf$/i, "") + " (short)"
+                       : (el.reflowTitleIn.value.trim() || "song sheet")) + ".pdf"
+    };
+    return showSheetPreview();
+  }).catch(function(e){
+    console.error(e);
+    toast("Couldn't build the sheet", true);
+  }).then(function(){
+    el.reflowBuild.disabled = false;
+    sheetBuilding = false;
+    if(sheetAgain){ sheetAgain = false; scheduleSheetBuild(); }
+  });
+}
+
+var sheetBuilding = false, sheetAgain = false, sheetTimer = null, sheetStale = false;
+
+/* Keep the short sheet in step with whatever the song and the settings say. */
+function scheduleSheetBuild(){
+  if(el.reflowPanel.hidden) return;
+  var pane = document.getElementById("subpane-build");
+  if(!pane || !pane.classList.contains("is-on")){
+    sheetStale = true;              // catch up when this pane comes back
+    return;
+  }
+  sheetStale = false;
+  clearTimeout(sheetTimer);
+  sheetTimer = setTimeout(function(){ buildSheetNow(true); }, 650);
+}
+
+el.reflowBuild.addEventListener("click", function(){ buildSheetNow(false); });
+["reflowPages","reflowMin","reflowMargin","reflowStrip","reflowHead","reflowStrum"].forEach(function(id){
+  el[id].addEventListener("change", scheduleSheetBuild);
+});
+el.reflowMin.addEventListener("input", scheduleSheetBuild);
+el.reflowMargin.addEventListener("input", scheduleSheetBuild);
+[el.reflowText, el.reflowTitleIn, el.reflowArtistIn].forEach(function(n){
+  n.addEventListener("input", scheduleSheetBuild);
+});
+
+/* --------- see the sheet before it is saved --------- */
+
+var builtSheet = null, sheetStripCv = null;
+
+function clearSheetPreview(){
+  builtSheet = null;
+  el.sheetPrev.hidden = true;
+  el.sheetSave.disabled = true;
+  el.buildCols.classList.remove("has-prev");
+  el.sheetPages.innerHTML = "";
+}
+
+function showSheetPreview(){
+  if(!builtSheet) return;
+  var want = Number(el.reflowPages.value) || 1;
+  el.sheetPrev.hidden = false;
+  el.sheetSave.disabled = false;
+  el.buildCols.classList.add("has-prev");
+  el.sheetInfo.textContent = builtSheet.pages + " page" + (builtSheet.pages > 1 ? "s" : "") +
+    " · " + builtSheet.size + "pt" +
+    (builtSheet.pages > want ? " · as small as you allowed" : "") +
+    (builtSheet.failed ? " · " + builtSheet.failed + " line(s) dropped" : "");
+
+  el.sheetPages.innerHTML = "";
+  var L = builtSheet.layout;
+  if(!L || !builtSheet.plan){
+    el.sheetPages.innerHTML = '<span class="ph">Built. Save PDF to see it.</span>';
+    return;
+  }
+  builtSheet.plan.forEach(function(ops, idx){
+    el.sheetPages.appendChild(drawSheetPage(ops, L, idx));
+  });
+  return Promise.resolve();
+}
+
+/* The same geometry the PDF was written with, drawn straight onto a canvas.
+   Going through a PDF renderer here needs font files the page cannot fetch. */
+function drawSheetPage(ops, L, idx){
+  var cssW = 420, k = (cssW / L.pageW) * 2;
+  var cv = document.createElement("canvas");
+  cv.width = Math.round(L.pageW * k);
+  cv.height = Math.round(L.pageH * k);
+  cv.style.width = cssW + "px";
+  cv.setAttribute("aria-label", "Sheet page " + (idx + 1));
+
+  var c = cv.getContext("2d");
+  c.fillStyle = "#FFFFFF"; c.fillRect(0, 0, cv.width, cv.height);
+  c.scale(k, k);
+  c.textBaseline = "alphabetic";
+
+  function face(op){
+    if(op.kind === "mono")  return op.size + 'px "Courier New", Courier, monospace';
+    if(op.kind === "monob") return '700 ' + op.size + 'px "Courier New", Courier, monospace';
+    if(op.kind === "foot") return op.size + "px " + FONT_STACK;
+    if(op.kind === "label" || op.kind === "chordrow" || op.bold) return "700 " + op.size + "px " + FONT_STACK;
+    return op.size + "px " + FONT_STACK;
+  }
+
+  if(idx === 0){
+    var ty = L.pageH - L.margin - 14;
+    if(L.title){
+      c.fillStyle = "#111111";
+      c.font = "700 16px " + FONT_STACK;
+      c.fillText(L.title, L.margin, L.pageH - ty);
+      ty -= 15;
+    }
+    if(L.artist){
+      c.fillStyle = "#595959";
+      c.font = "10.5px " + FONT_STACK;
+      c.fillText(L.artist, L.margin, L.pageH - ty);
+    }
+    if(L.strip && sheetStripCv){
+      c.drawImage(sheetStripCv, L.strip.x, L.pageH - L.strip.y - L.strip.h, L.strip.w, L.strip.h);
+    }
+  }
+
+  ops.forEach(function(op){
+    if(!isFinite(op.x) || !isFinite(op.y) || !(op.size > 0)) return;
+    c.fillStyle = op.kind === "foot" ? "#6B6B6B" : "#111111";
+    c.font = face(op);
+    c.fillText(String(op.s), op.x, L.pageH - op.y);
+  });
+  return cv;
+}
+
+el.sheetSave.addEventListener("click", function(){
+  if(!builtSheet || !downloads) return;
+  el.sheetSave.disabled = true;
+  downloads.save({ filename: builtSheet.name, data: builtSheet.bytes.slice(0) })
+    .then(function(){ toast("Saved " + builtSheet.name); },
+          function(e){ if(!e || e.code !== "declined") toast("Couldn\u2019t save that file", true); })
+    .then(function(){ el.sheetSave.disabled = false; });
+});
+
+/* =========================== 7b. Strumming panel =========================== */
+
+function strumPretty(str){
+  var out = [];
+  for(var i=0;i<str.length;i+=2) out.push(str.slice(i, i+2));
+  return out.join(" ");
+}
+
+(function buildLibrary(){
+  function opt(txt, val){
+    var o = document.createElement("option");
+    o.value = val; o.textContent = txt;
+    return o;
+  }
+  var named = document.createElement("optgroup"); named.label = "Named patterns";
+  var rest  = document.createElement("optgroup"); rest.label  = "More patterns";
+  STRUM_LIB.forEach(function(row, i){
+    var slots = row[0], name = row[1], songs = row[2];
+    if(name){
+      named.appendChild(opt(name + "  —  " + strumPretty(slots) +
+                            (songs ? "  (" + songs + ")" : ""), String(i)));
+    } else {
+      rest.appendChild(opt(strumPretty(slots), String(i)));
+    }
+  });
+  el.strumLib.appendChild(opt("None — no strumming row", "-2"));
+  el.strumLib.appendChild(opt("Custom", "-1"));
+  el.strumLib.appendChild(named);
+  el.strumLib.appendChild(rest);
+})();
+
+function libIndexFor(slots){
+  for(var i=0;i<STRUM_LIB.length;i++) if(STRUM_LIB[i][0] === slots) return i;
+  return -1;
+}
+
+function renderStrumPanel(){
+  var slots = parseStrum(state.strumSlots);
+  var counts = strumCounts(slots.length);
+  var glyph = {D:"↓", U:"↑", x:"×", "-":"·"};
+
+  el.strumSlots.innerHTML = "";
+  slots.forEach(function(sym, i){
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = "slot" + (sym === "-" ? " rest" : "");
+    b.setAttribute("aria-label", "Beat " + counts[i] + ": " +
+      ({D:"down", U:"up", x:"muted", "-":"rest"})[sym]);
+    b.innerHTML = '<span class="sym">' + glyph[sym] + '</span><span class="beat">' + counts[i] + "</span>";
+    b.addEventListener("click", function(){
+      var order = ["D","U","x","-"];
+      var next = order[(order.indexOf(sym) + 1) % 4];
+      var arr = parseStrum(state.strumSlots);
+      arr[i] = next;
+      setStrum(arr.join(""), null);
+    });
+    el.strumSlots.appendChild(b);
+  });
+
+  if(document.activeElement !== el.strumText) el.strumText.value = strumPretty(state.strumSlots);
+  var idx = libIndexFor(state.strumSlots);
+  el.strumLib.value = state.strumOn ? String(idx) : "-2";
+  var songs = idx >= 0 ? STRUM_LIB[idx][2] : "";
+  el.strumSongs.textContent = !state.strumOn
+    ? "No strumming row on the strip. Pick a pattern above to add one."
+    : (songs ? "Heard in: " + songs
+             : "Click a slot to change it — down, up, muted, rest.");
+  el.strumBody.style.opacity = state.strumOn ? "1" : ".5";
+}
+
+function setStrum(slots, name){
+  state.strumSlots = slots;
+  var idx = libIndexFor(slots);
+  state.strumName = name != null ? name : (idx >= 0 ? STRUM_LIB[idx][1] : "");
+  renderStrumPanel();
+  render();
+}
+
+el.strumOn.addEventListener("change", function(){
+  state.strumOn = el.strumOn.checked;
+  renderStrumPanel();
+  render();
+});
+el.strumShowName.addEventListener("change", function(){
+  state.strumShowName = el.strumShowName.checked;
+  render();
+});
+el.strumLib.addEventListener("change", function(){
+  var i = Number(el.strumLib.value);
+  if(i === -2){                       // None: leave it off the strip
+    state.strumOn = false;
+    el.strumOn.checked = false;
+    renderStrumPanel();
+    render();
+    return;
+  }
+  if(i < 0) return;
+  if(!state.strumOn){ state.strumOn = true; el.strumOn.checked = true; }
+  setStrum(STRUM_LIB[i][0], STRUM_LIB[i][1]);
+});
+el.strumText.addEventListener("input", function(){
+  var arr = parseStrum(el.strumText.value);
+  if(!arr.length) return;
+  setStrum(arr.join(""), null);
+});
+el.strumText.addEventListener("blur", renderStrumPanel);
+
+el.strumOn.checked = state.strumOn;
+el.strumShowName.checked = state.strumShowName;
+renderStrumPanel();
+
+/* ============================== 7c. Tabs ============================== */
+
+var TABS = ["song","chords","strum","pdf"];
+var subMode = "build";
+
+function setTab(name){
+  if(TABS.indexOf(name) < 0) name = "song";
+  TABS.forEach(function(n){
+    var t = document.getElementById("tab-" + n), pn = document.getElementById("pane-" + n);
+    if(!t || !pn) return;
+    var on = (n === name);
+    t.classList.toggle("is-on", on);
+    t.setAttribute("aria-selected", on ? "true" : "false");
+    pn.classList.toggle("is-on", on);
+  });
+  try{ localStorage.setItem("chordStripTab", name); }catch(e){}
+  if(name === "pdf") syncSubTabs();
+  if(name === "chords") render();            // the strip sizes itself once visible
+}
+Array.prototype.forEach.call(document.querySelectorAll(".tab"), function(t){
+  t.addEventListener("click", function(){ setTab(t.getAttribute("data-pane")); });
+});
+
+function setSub(which, remember){
+  var canStamp = !el.pdfPanel.hidden, canBuild = !el.reflowPanel.hidden;
+  if(which === "stamp" && !canStamp && canBuild) which = "build";
+  if(which === "build" && !canBuild && canStamp) which = "stamp";
+  if(remember !== false) subMode = which;
+  el.subBuild.classList.toggle("is-on", which === "build");
+  el.subStamp.classList.toggle("is-on", which === "stamp");
+  document.getElementById("subpane-build").classList.toggle("is-on", which === "build" && canBuild);
+  document.getElementById("subpane-stamp").classList.toggle("is-on", which === "stamp" && canStamp);
+  if(which === "stamp" && canStamp) drawPdfPreview();
+  if(which === "build" && canBuild && (!builtSheet || sheetStale)) scheduleSheetBuild();
+  updateSubNote(which);
+}
+
+function syncSubTabs(){
+  var canStamp = !el.pdfPanel.hidden, canBuild = !el.reflowPanel.hidden;
+  el.subStamp.disabled = !canStamp;
+  el.subBuild.disabled = !canBuild;
+  el.subStamp.title = canStamp ? "" : "Import a PDF on Your Song to display and stamp it";
+  el.subBuild.title = canBuild ? "" : "Paste a song or import a PDF on Your Song first";
+  el.pdfEmpty.hidden = canStamp || canBuild;
+  setSub(subMode, false);
+}
+
+/* Both sides stay open whatever the source. A PDF opens on the stamp side
+   because that is usually what you want, but reflowing it onto fewer pages
+   is one click away and the tab should say so. */
+function updateSubNote(which){
+  if(!el.subNote) return;
+  var hasPdf = !!(pdfSource && pdfSource.pages);
+  var canStamp = !el.pdfPanel.hidden, canBuild = !el.reflowPanel.hidden;
+  var txt = "";
+  if(canStamp && canBuild && which === "stamp" && hasPdf){
+    txt = "Want it shorter? <b>Build a sheet</b> reflows this PDF\u2019s words and chords onto 1\u20133 pages.";
+  } else if(canStamp && canBuild && which === "build" && hasPdf){
+    txt = "Rebuilt from the PDF\u2019s text. <b>Display &amp; stamp</b> goes back to the original pages.";
+  }
+  el.subNote.innerHTML = txt;
+  el.subNote.hidden = !txt;
+}
+el.subBuild.addEventListener("click", function(){ setSub("build"); });
+el.subStamp.addEventListener("click", function(){ setSub("stamp"); });
+
+/* a dropped PDF belongs on the stamp side; typed words belong on the build side */
+function chooseSubForSource(){
+  subMode = (pdfSource && pdfSource.pages) ? "stamp" : "build";
+  syncSubTabs();
+}
+
+(function(){
+  var saved = null;
+  try{ saved = localStorage.getItem("chordStripTab"); }catch(e){}
+  setTab(TABS.indexOf(saved) >= 0 ? saved : "song");
+})();
+
+/* ============================ 8. Instrument ============================ */
+
+function setInstrument(which, quiet){
+  if(!INSTRUMENTS[which]) return;
+  INST = which;
+  cache = {};                 // fingerings are per instrument
+  state.pick = {};
+  stripSig = ""; stripCv = null;
+  try{ localStorage.setItem("chordStripInst", which); }catch(e){}
+  applyInstrument();
+  el.instUke.classList.toggle("is-on", which === "uke");
+  el.instGuitar.classList.toggle("is-on", which === "guitar");
+  el.tuningTxt.textContent = inst().tuning;
+  el.legendStrings.innerHTML = "<b>Reading a diagram.</b> Strings run " +
+    (which === "guitar" ? "E&ndash;A&ndash;D&ndash;G&ndash;B&ndash;E" : "G&ndash;C&ndash;E&ndash;A") +
+    " left to right. The thick bar at the top is the nut; <code>5fr</code> at the right means the window " +
+    "starts at the 5th fret instead." +
+    (which === "guitar" ? " <code>\u00d7</code> above a string means don\u2019t play it." : "");
+  if(!quiet) render();
+}
+el.instUke.addEventListener("click", function(){ setInstrument("uke"); });
+el.instGuitar.addEventListener("click", function(){ setInstrument("guitar"); });
+(function(){
+  var saved = null;
+  try{ saved = localStorage.getItem("chordStripInst"); }catch(e){}
+  setInstrument(saved === "guitar" ? "guitar" : "uke", true);
+})();
+
+/* ============================ 9. Light / dark ============================ */
+
+var MOON = '<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>';
+var SUN  = '<circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.2M12 19.8V22M4.9 4.9l1.6 1.6M17.5 17.5l1.6 1.6M2 12h2.2M19.8 12H22M4.9 19.1l1.6-1.6M17.5 6.5l1.6-1.6"/>';
+
+function effectiveTheme(){
+  var t = document.documentElement.getAttribute("data-theme");
+  if(t === "dark" || t === "light") return t;
+  try{ return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"; }
+  catch(e){ return "light"; }
+}
+function paintThemeButton(){
+  var dark = effectiveTheme() === "dark";
+  el.themeIcon.innerHTML = dark ? SUN : MOON;
+  var label = dark ? "Switch to light mode" : "Switch to dark mode";
+  el.themeBtn.setAttribute("aria-label", label);
+  el.themeBtn.title = label;
+}
+function setTheme(t){
+  document.documentElement.setAttribute("data-theme", t);
+  try{ localStorage.setItem("ukeTheme", t); }catch(e){}
+  paintThemeButton();
+  if(pdfSource) drawPdfPreview();   // picks up the new accent for the drag handles
+}
+(function(){
+  var saved = null;
+  try{ saved = localStorage.getItem("ukeTheme"); }catch(e){}
+  if(saved === "dark" || saved === "light") document.documentElement.setAttribute("data-theme", saved);
+  paintThemeButton();
+  try{
+    window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", paintThemeButton);
+  }catch(e){}
+})();
+el.themeBtn.addEventListener("click", function(){
+  setTheme(effectiveTheme() === "dark" ? "light" : "dark");
+});
+
+if(document.fonts && document.fonts.ready) document.fonts.ready.then(render);
+render();
+
+})();
+</script>
+
+</body>
+</html>

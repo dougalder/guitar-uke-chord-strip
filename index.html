@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Add chord diagrams to PDF sheet music and create formatted chord charts for guitar and ukulele.">
+  <title>Guitar and Ukulele Chord Strip</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%2032%2032%27%3E%3Crect%20width%3D%2732%27%20height%3D%2732%27%20rx%3D%277%27%20fill%3D%27%238A5C15%27%2F%3E%3Cg%20stroke%3D%27%23fff%27%20stroke-linecap%3D%27round%27%3E%3Cpath%20d%3D%27M7.5%209.6h17%27%20stroke-width%3D%273%27%2F%3E%3Cg%20stroke-width%3D%271.25%27%20opacity%3D%27.85%27%3E%3Cpath%20d%3D%27M7.5%2015h17M7.5%2020.4h17M7.5%2025.8h17%27%2F%3E%3Cpath%20d%3D%27M7.5%209.6v16.2M13.2%209.6v16.2M18.8%209.6v16.2M24.5%209.6v16.2%27%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3Ccircle%20cx%3D%2713.2%27%20cy%3D%2717.7%27%20r%3D%272.6%27%20fill%3D%27%23fff%27%2F%3E%3Ccircle%20cx%3D%2724.5%27%20cy%3D%2723.1%27%20r%3D%272.6%27%20fill%3D%27%23fff%27%2F%3E%3C%2Fsvg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap">
+  <style>
+    :root {
+      --bg: #EDF0EE;
+      --surface: #FFFFFF;
+      --ink: #151D19;
+      --muted: #5D6B64;
+      --accent: #8A5C15;
+      --accent-bg: rgba(138, 92, 21, 0.1);
+      --danger: #8F2F1F;
+      --shadow: 0 1px 2px rgba(20, 32, 26, 0.05), 0 8px 24px -12px rgba(20, 32, 26, 0.18);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #101613;
+        --surface: #18201C;
+        --ink: #E3EAE5;
+        --muted: #9AA9A1;
+        --accent: #D7A24A;
+        --accent-bg: rgba(215, 162, 74, 0.14);
+        --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 10px 28px -14px rgba(0, 0, 0, 0.7);
+      }
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Archivo', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    header {
+      background: var(--surface);
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .logo-icon {
+      width: 32px;
+      height: 32px;
+      background: var(--accent);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.2rem;
+    }
+
+    .header-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .header-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .header-links a:hover {
+      color: var(--accent);
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+
+    .hero {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+
+    .tagline {
+      font-size: 1.25rem;
+      color: var(--muted);
+      margin-bottom: 2rem;
+    }
+
+    .cta-button {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      background: var(--accent);
+      color: white;
+      text-decoration: none;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      box-shadow: var(--shadow);
+      border: none;
+      cursor: pointer;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 2px 4px rgba(20, 32, 26, 0.1), 0 12px 32px -8px rgba(20, 32, 26, 0.25);
+    }
+
+    .secondary-button {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      background: var(--surface);
+      color: var(--accent);
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 500;
+      border: 2px solid var(--accent);
+      transition: all 0.3s ease;
+      margin-left: 1rem;
+    }
+
+    .secondary-button:hover {
+      background: var(--accent-bg);
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+
+    .feature {
+      background: var(--surface);
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+    }
+
+    .feature-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .feature h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.75rem;
+      color: var(--ink);
+    }
+
+    .feature p {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .screenshots-section {
+      background: var(--surface);
+      padding: 3rem 2rem;
+      border-radius: 12px;
+      margin-bottom: 4rem;
+      box-shadow: var(--shadow);
+    }
+
+    .screenshots-section h2 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .screenshot-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .screenshot {
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--bg);
+      padding: 1rem;
+      border: 1px solid #D2D9D4;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .screenshot {
+        border-color: #2A3531;
+      }
+    }
+
+    .screenshot img {
+      width: 100%;
+      height: auto;
+      border-radius: 4px;
+    }
+
+    .screenshot-title {
+      margin-top: 0.75rem;
+      font-weight: 600;
+      color: var(--ink);
+      text-align: center;
+    }
+
+    .quick-links {
+      background: var(--accent-bg);
+      padding: 2rem;
+      border-radius: 12px;
+      margin-bottom: 4rem;
+      border-left: 4px solid var(--accent);
+    }
+
+    .quick-links h2 {
+      margin-bottom: 1.5rem;
+      color: var(--accent);
+    }
+
+    .quick-links ul {
+      list-style: none;
+      columns: 2;
+      gap: 2rem;
+    }
+
+    .quick-links li {
+      margin-bottom: 0.75rem;
+      column-break-inside: avoid;
+    }
+
+    .quick-links a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .quick-links a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      background: var(--surface);
+      padding: 2rem;
+      text-align: center;
+      color: var(--muted);
+      border-top: 1px solid #D2D9D4;
+      margin-top: 4rem;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      footer {
+        border-top-color: #2A3531;
+      }
+    }
+
+    .footer-links {
+      margin-bottom: 1rem;
+    }
+
+    .footer-links a {
+      color: var(--accent);
+      text-decoration: none;
+      margin: 0 1rem;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      .header-links {
+        gap: 1rem;
+      }
+
+      main {
+        padding: 2rem 1rem;
+      }
+
+      .secondary-button {
+        display: block;
+        margin-left: 0;
+        margin-top: 1rem;
+      }
+
+      .quick-links ul {
+        columns: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <div class="logo">
+        <div class="logo-icon">🎸</div>
+        <span>Chord Strip</span>
+      </div>
+      <nav class="header-links">
+        <a href="#features">Features</a>
+        <a href="README.md">README</a>
+        <a href="MANUAL.md">Manual</a>
+        <a href="chord-strip.html" class="cta-button" style="text-decoration: none;">Open App</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>Guitar and Ukulele Chord Strip</h1>
+      <p class="tagline">Add professional chord diagrams to your PDF sheet music and create formatted chord charts</p>
+      <a href="chord-strip.html" class="cta-button">Launch App →</a>
+      <a href="MANUAL.md" class="secondary-button">Read Manual</a>
+    </section>
+
+    <section id="features" class="features">
+      <div class="feature">
+        <div class="feature-icon">📄</div>
+        <h3>PDF Integration</h3>
+        <p>Upload PDF sheet music and overlay chord diagrams directly. Position and resize with intuitive drag-and-drop controls.</p>
+      </div>
+
+      <div class="feature">
+        <div class="feature-icon">🎯</div>
+        <h3>Chord Recognition</h3>
+        <p>Automatically detects chord names from text or PDFs. Handles variations from simple (C, Cm) to complex (Cmaj7, Em7b5).</p>
+      </div>
+
+      <div class="feature">
+        <div class="feature-icon">🎸</div>
+        <h3>Dual Instruments</h3>
+        <p>Full support for guitar and ukulele with standard tunings. Accurate fingering diagrams for all chords.</p>
+      </div>
+
+      <div class="feature">
+        <div class="feature-icon">🎶</div>
+        <h3>Strumming Patterns</h3>
+        <p>Browse 50+ authentic strumming patterns, each with song examples. Perfect for learning and reference.</p>
+      </div>
+
+      <div class="feature">
+        <div class="feature-icon">📝</div>
+        <h3>Sheet Building</h3>
+        <p>Create formatted PDFs from plain text lyrics. Automatic reflowing with customizable margins and styling.</p>
+      </div>
+
+      <div class="feature">
+        <div class="feature-icon">🌙</div>
+        <h3>Dark/Light Modes</h3>
+        <p>Comfortable viewing in any lighting. Automatic theme based on system preferences with manual override.</p>
+      </div>
+    </section>
+
+    <section class="quick-links">
+      <h2>📚 Quick Links</h2>
+      <ul>
+        <li><a href="chord-strip.html">→ Open the Application</a></li>
+        <li><a href="README.md">→ Feature Overview</a></li>
+        <li><a href="MANUAL.md">→ Complete User Guide</a></li>
+        <li><a href="LICENSE.md">→ License Information</a></li>
+        <li><a href="screenshots/">→ View Screenshots</a></li>
+      </ul>
+    </section>
+
+    <section class="screenshots-section">
+      <h2>App Features</h2>
+      <div class="screenshot-grid">
+        <div class="screenshot">
+          <img src="screenshots/01-your-song-tab.png" alt="Your Song Tab">
+          <div class="screenshot-title">Your Song</div>
+        </div>
+        <div class="screenshot">
+          <img src="screenshots/02-chords-found-tab.png" alt="Chords Found Tab">
+          <div class="screenshot-title">Chords Found</div>
+        </div>
+        <div class="screenshot">
+          <img src="screenshots/03-strumming-tab.png" alt="Strumming Tab">
+          <div class="screenshot-title">Strumming Patterns</div>
+        </div>
+        <div class="screenshot">
+          <img src="screenshots/04-pdf-tab.png" alt="PDF Tab">
+          <div class="screenshot-title">Display & Stamp</div>
+        </div>
+        <div class="screenshot">
+          <img src="screenshots/05-dark-mode.png" alt="Dark Mode">
+          <div class="screenshot-title">Dark Mode</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-links">
+      <a href="README.md">Documentation</a>
+      <a href="MANUAL.md">User Guide</a>
+      <a href="LICENSE.md">License</a>
+    </div>
+    <p>Built for musicians and songwriters everywhere 🎵</p>
+    <p style="font-size: 0.9rem; margin-top: 1rem;">Version 23 • October 2026</p>
+  </footer>
+</body>
+</html>
