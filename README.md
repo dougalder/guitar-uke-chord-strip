@@ -1,5 +1,6 @@
 # Guitar and Ukulele Chord Strip
 
+[Launch Guitar and Ukelele Chord Strip](https://dougalder.github.io/guitar-uke-chord-strip/)
 A powerful web application for adding chord diagrams to PDF sheet music and creating formatted chord charts for both guitar and ukulele.
 
 ## Overview
